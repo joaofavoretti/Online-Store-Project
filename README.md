@@ -4,7 +4,7 @@ Trabalho da disciplina Introdução ao Desenvolvimento Web - SCC0219
 
 ### Grupo 6 - Integrantes:
 
-- Joao Pedro Favoretti (Nusp: XXXXXXXX)
+- Joao Pedro Favoretti (Nusp: 11316055)
 - Lucas Pilla Pimentel (Nusp: XXXXXXXX)
 - Nao sei o nome (Nusp: XXXXXXXX)
 
