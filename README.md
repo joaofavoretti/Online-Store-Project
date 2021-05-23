@@ -46,7 +46,7 @@ A fim de atender essas funcionalidades será necessário guardar informações r
 - receita: id, nome, foto, ingredientes e descrição;
 
 
-Para isso, até o momento, foram desenvolvidas algumas das interfaces da loja utilizando a ferrementa Figma e HTML5/CSS3. O diagrama de navegação da aplicação com as páginas desenvolvidas pode ser visto na seguinte imagem:
+Até o momento, foram desenvolvidas algumas das interfaces da loja utilizando a ferrementa Figma e HTML5/CSS3. O diagrama de navegação da aplicação com as páginas desenvolvidas pode ser visto na seguinte imagem:
 
 
 <img src="https://docs.google.com/drawings/d/e/2PACX-1vQwnxKMqVyg2b3LG4fyccQgSx_RdGMqBWtCVipjJF4xozRtMyHfKtNJks_RUJ9YgIAi7qbzlN-ZyiPr/pub?w=1829&amp;h=940">
