@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <title>Carrinho</title>
+    <style>
+        * { font-family: 'Roboto', sans-serif; overflow: auto;}
+    </style>
+</head>
+<body style="width:100%; background: #F6F6F6; overflow-x: hidden;">
+    <header class="px-3 py-2 mb-3 d-flex justify-content-between" style="background-color:#AE8A2C;width: 100%; filter: drop-shadow(0px 0px 15px rgba(0, 0, 0, 0.25)); position: fixed; top: 0; z-index: 1;">
+        <div class="left-header d-flex">
+            <div class="logo" style="width:7rem; height:2rem; background-color:#FFF"></div>
+            <div class="menu ms-5 d-flex align-items-center" style="color: #FFF;"><img src="assets/icons/menu_black_24dp.svg" alt="" style="filter: invert(1);"> MENU</div>
+            <div class="produtos ms-5 d-flex align-items-center" style="color: #FFF;"><img src="assets/icons/keyboard_arrow_down_black_24dp.svg" alt="" style="filter: invert(1);"> PRODUTOS</div>
+        </div>
+        <div class="right-header d-flex">
+            <div class="profile me-4"><img src="assets/icons/account_circle_black_24dp.svg" alt="" style="filter: invert(1);"></div>
+            <div class="cart me-4"><img src="assets/icons/shopping_cart_black_24dp.svg" alt="" style="filter: invert(1);"></div>
+        </div>
+    </header>
+    <br>
+
+    <div class="titulo d-flex flex-column justify-content-center align-items-center" style="width:100vw; margin-top:3rem;">
+        <h1 style="font-size: 26px;">Shopping Cart</h1>
+        <p><span style="color:#AE8A2C; text-decoration-line: underline;">3</span> items in your cart</p>
+    </div>
+
+    <div class="table mb-0" style="margin-left:20vw; margin-right:20vw; width:60vw; color:#6A6A6A">
+        <hr class="m-0"/>
+        <div class="labels px-3 d-flex align-items-center justify-content-between">
+            <div class="titulo">
+                Produto
+            </div>
+            <div class="extra d-flex align-items-center justify-content-end">
+                <div class="price">Preço</div>
+                <div class="quantity">Quantidade</div>
+            </div>
+        </div>
+
+        <hr class="m-0"/>
+
+        <div class="labels px-3 py-3 d-flex align-items-center justify-content-between">
+            <div class="main d-flex align-items-center justify-content-start">
+                <img src="assets/images/farinha.jpeg" class="foto" style="width:10rem; height:10rem;">
+                <div class="item-info d-flex flex-column justify-content-start align-items-start ps-3" style="height:10rem;">
+                    <h1 style="font-size:20px; font-weight:normal;">Farinha</h1>
+                    <h2 style="font-size:14px; font-weight:normal; color:#9C9C9C;">Brand & Name</h2>
+                </div>
+            </div>
+            <div class="extra d-flex align-items-center">
+                <div class="item-info d-flex flex-column justify-content-start align-items-start ps-3" style="height:10rem;">
+                    <p style="font-size:12px; font-weight:normal; margin-top:0.5rem;">R$ 49,90</p>
+                </div>
+                <div class="item-info d-flex flex-column justify-content-between align-items-center ps-3" style="height:10rem;">
+                    <div class="d-flex align-items-center justify-content-center" style="border: 1px solid #C4C4C4; width:5rem; height:2rem;">1</div>
+                    <p style="font-size:12px; color:#E11C1C; text-decoration-line:underline;">Remover</p>
+                </div>
+            </div>
+        </div>
+    
+        <hr class="m-0"/>
+
+        <div class="labels px-3 py-3 d-flex align-items-center justify-content-between">
+            <div class="main d-flex align-items-center justify-content-start">
+                <img src="assets/images/azeite.jpeg" class="foto" style="width:10rem; height:10rem;">
+                <div class="item-info d-flex flex-column justify-content-start align-items-start ps-3" style="height:10rem;">
+                    <h1 style="font-size:20px; font-weight:normal;">Azeite</h1>
+                    <h2 style="font-size:14px; font-weight:normal; color:#9C9C9C;">Brand & Name</h2>
+                </div>
+            </div>
+            <div class="extra d-flex align-items-center">
+                <div class="item-info d-flex flex-column justify-content-start align-items-start ps-3" style="height:10rem;">
+                    <p style="font-size:12px; font-weight:normal; margin-top:0.5rem;">R$ 49,90</p>
+                </div>
+                <div class="item-info d-flex flex-column justify-content-between align-items-center ps-3" style="height:10rem;">
+                    <div class="d-flex align-items-center justify-content-center" style="border: 1px solid #C4C4C4; width:5rem; height:2rem;">1</div>
+                    <p style="font-size:12px; color:#E11C1C; text-decoration-line:underline;">Remover</p>
+                </div>
+            </div>
+        </div>
+    
+        <hr class="m-0"/>
+
+        <div class="labels px-3 py-3 d-flex align-items-center justify-content-between">
+            <div class="main d-flex align-items-center justify-content-start">
+                <img src="assets/images/tomate.jpeg" class="foto" style="width:10rem; height:10rem;">
+                <div class="item-info d-flex flex-column justify-content-start align-items-start ps-3" style="height:10rem;">
+                    <h1 style="font-size:20px; font-weight:normal;">Tomate</h1>
+                    <h2 style="font-size:14px; font-weight:normal; color:#9C9C9C;">Brand & Name</h2>
+                </div>
+            </div>
+            <div class="extra d-flex align-items-center">
+                <div class="item-info d-flex flex-column justify-content-start align-items-start ps-3" style="height:10rem;">
+                    <p style="font-size:12px; font-weight:normal; margin-top:0.5rem;">R$ 49,90</p>
+                </div>
+                <div class="item-info d-flex flex-column justify-content-between align-items-center ps-3" style="height:10rem;">
+                    <div class="d-flex align-items-center justify-content-center" style="border: 1px solid #C4C4C4; width:5rem; height:2rem;">1</div>
+                    <p style="font-size:12px; color:#E11C1C; text-decoration-line:underline;">Remover</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer" style="margin-left:20vw; margin-right:20vw; width:60vw; color:#6A6A6A; text-align:end">
+        <h3 style="font-size:20px;">Subtotal:</h3>
+        <h1 style="font-size:40px;">R$99,99</h1>
+        <div class="actions d-flex justify-content-between align-items-center mt-3">
+            <div style="color:#AE8A2C"><- Continue comprando</div>
+            <div class="d-flex align-items-center justify-content-center" style="background:#AE8A2C; color:#FFF; width:200px; height:2.5rem; border-radius:5px; font-size:18px;">Finalizar compra</div>
+        </div>
+    </div>
+    <br>
+</body>
+</html>
