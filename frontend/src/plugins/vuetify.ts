@@ -12,8 +12,12 @@ export default new Vuetify({
     themes: {
       // Define colors used
       light: {
-        primary: '#1976d2',
-        secondary: '#004ba0',
+        primary: '#AE8A2C',
+        primaryDark: '#7B5D00',
+        primaryLight: '#E3BA5B',
+        secondary: '#263238',
+        secondaryDark: '#000a12',
+        secondaryLight: '#4f5b62',
         accent: '#82B1FF',
         error: '#FF5252',
         info: '#2196F3',

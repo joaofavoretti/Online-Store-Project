@@ -1,31 +1,28 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <h1>Vue Typescript</h1>
-
-      <v-spacer />
-
-      <v-btn text v-for='path in routes' :key="path.path" @click="$router.push({ name: path.name })">
-        <b>{{ path.name }}</b>
-      </v-btn>
-    </v-app-bar>
-
     <v-main>
-      <router-view/>
+      <router-view />
     </v-main>
   </v-app>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { routes } from '@/router/index';
 
 @Component
-export default class App extends Vue {
-  routes = routes;
-}
+export default class App extends Vue {}
 </script>
+
+<style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import "@/shared/styles/toasted.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+</style>
