@@ -18,7 +18,7 @@
     <div class="action-tabs">
       <v-tabs
         class="d-flex justify-center"
-        v-model="tab"
+        v-model="productTab"
       >
         <v-tab class="mx-4">Mais vendidos</v-tab>
         <v-tab class="mx-4">Lancamentos</v-tab>
@@ -26,16 +26,67 @@
     </div>
 
     <div class="tabs-content">
-      <v-tabs-items v-model="tab">
+      <v-tabs-items v-model="productTab">
         <v-tab-item>
-          <ProductCard />
+          <v-carousel
+            hide-delimiters
+            show-arrows-on-hover
+            height="25rem"
+            v-model="productMaisVendidosShowModel"
+            >
+            <v-carousel-item
+              v-for="(productPage, i) in (productsMaisVendidos.length/3)"
+              :key="i"
+            >
+              <div class="d-flex justify-center">
+                <ProductCard
+                  :product="productsMaisVendidos[3*(productPage-1)+0]"
+                />
+                <ProductCard
+                  :product="productsMaisVendidos[3*(productPage-1)+1]"
+                />
+                <ProductCard
+                  :product="productsMaisVendidos[3*(productPage-1)+2]"
+                />
+              </div>
+            </v-carousel-item>
+          </v-carousel>
         </v-tab-item>
+
         <v-tab-item>
-          lancamentos
+          <v-carousel
+            hide-delimiters
+            show-arrows-on-hover
+            height="25rem"
+            v-model="productLancamentosShowModel"
+            >
+            <v-carousel-item
+              v-for="(productPage, i) in (productsLancamentos.length/3)"
+              :key="i"
+            >
+              <div class="d-flex justify-center">
+                <ProductCard
+                  :product="productsLancamentos[3*(productPage-1)+0]"
+                />
+                <ProductCard
+                  :product="productsLancamentos[3*(productPage-1)+1]"
+                />
+                <ProductCard
+                  :product="productsLancamentos[3*(productPage-1)+2]"
+                />
+              </div>
+            </v-carousel-item>
+          </v-carousel>
         </v-tab-item>
       </v-tabs-items>
     </div>
-
+    <ProductDialog
+      :product="productsMaisVendidos[0]"
+      :show="show"
+      :loading="false"
+      @onConfirm="confirm"
+      @onClose="show = false"
+    />
   </v-container>
 </template>
 

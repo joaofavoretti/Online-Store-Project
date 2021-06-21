@@ -10,15 +10,7 @@
       <v-spacer />
 
       <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-filter</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
+        <v-icon>mdi-exit-to-app</v-icon>
       </v-btn>
     </v-app-bar>
 
@@ -26,13 +18,14 @@
       <v-list>
         <v-list-item class="px-2">
           <v-list-item-avatar>
-            <v-img src="https://randomuser.me/api/portraits/women/85.jpg"></v-img>
+            <!-- <v-img src="https://randomuser.me/api/portraits/women/85.jpg"></v-img> -->
+            <v-icon>mdi-account</v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title class="text-h6">
-              Sandra Adams
+              Conta teste
             </v-list-item-title>
-            <v-list-item-subtitle>sandra_a88@gmail.com</v-list-item-subtitle>
+            <v-list-item-subtitle>teste@gmail.com</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
 

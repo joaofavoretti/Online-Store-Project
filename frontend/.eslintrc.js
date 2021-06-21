@@ -17,6 +17,7 @@ module.exports = {
     'class-methods-use-this': 'off',
     'object-curly-newline': 'off',
     'import/no-cycle': 'off',
+    'import/prefer-default-export': 'off',
     'max-len': ['error', { code: 180 }],
   },
 };

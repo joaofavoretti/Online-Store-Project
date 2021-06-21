@@ -2,8 +2,8 @@
   <v-container>
     <v-card outlined class="card-style" width="250px" height="350px">
       <v-img
-        v-if="imgsrc"
-        :src="imgsrc"
+        v-if="product.src"
+        :src="product.src"
         width="250px"
         height="250px"
       />
@@ -15,9 +15,9 @@
         width="250"
       ></v-sheet>
 
-      <v-card-title style="text-aling: center;">Produto</v-card-title>
+      <v-card-title style="text-aling: center;">{{ product.name }}</v-card-title>
       <v-card-text>
-        A partir de R$ 49,90
+        A partir de {{ product.price | toCurrency }}
       </v-card-text>
     </v-card>
   </v-container>
@@ -25,14 +25,11 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import { ProductsInfo } from '@/store/modules/products/products-types';
 
 @Component
 export default class ProductCard extends Vue {
-  @Prop(String) readonly imgsrc: string | undefined
-
-  @Prop(String) readonly productName: string | undefined
-
-  @Prop(Number)readonly productPrice: number | undefined
+  @Prop(Object) readonly product: ProductsInfo | undefined
 }
 
 </script>
