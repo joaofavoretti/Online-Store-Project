@@ -14,35 +14,36 @@
       </v-btn>
     </v-app-bar>
 
-    <v-navigation-drawer color="primary" dark clipped class="sidebar" v-model="drawer">
-      <v-list>
-        <v-list-item class="px-2">
-          <v-list-item-avatar>
-            <!-- <v-img src="https://randomuser.me/api/portraits/women/85.jpg"></v-img> -->
-            <v-icon>mdi-account</v-icon>
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title class="text-h6">
-              Conta teste
-            </v-list-item-title>
-            <v-list-item-subtitle>teste@gmail.com</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
+    <v-card flat class="ma-4 sidebar">
+      <v-navigation-drawer color="primary" dark  v-model="drawer" floating>
+        <v-list>
+          <v-list-item class="px-2">
+            <v-list-item-avatar>
+              <v-icon>mdi-account</v-icon>
+            </v-list-item-avatar>
+            <v-list-item-content>
+              <v-list-item-title class="text-h6">
+                Conta teste
+              </v-list-item-title>
+              <v-list-item-subtitle>teste@gmail.com</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
 
-        <v-divider />
+          <v-divider />
 
-        <v-list-item link :to="{ name: item.routerName }" v-for="item in navigationDrawerItems" :key="item.title">
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
+          <v-list-item link :to="{ name: item.routerName }" v-for="item in navigationDrawerItems" :key="item.title">
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
 
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
+            <v-list-item-content>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
 
-    </v-navigation-drawer>
+      </v-navigation-drawer>
+    </v-card>
 
     <v-container class="content">
       <router-view />

@@ -40,12 +40,15 @@
             >
               <div class="d-flex justify-center">
                 <ProductCard
+                  @onClick="openProductDialog(productsMaisVendidos[3*(productPage-1)+0])"
                   :product="productsMaisVendidos[3*(productPage-1)+0]"
                 />
                 <ProductCard
+                  @onClick="openProductDialog(productsMaisVendidos[3*(productPage-1)+1])"
                   :product="productsMaisVendidos[3*(productPage-1)+1]"
                 />
                 <ProductCard
+                  @onClick="openProductDialog(productsMaisVendidos[3*(productPage-1)+2])"
                   :product="productsMaisVendidos[3*(productPage-1)+2]"
                 />
               </div>
@@ -67,11 +70,14 @@
               <div class="d-flex justify-center">
                 <ProductCard
                   :product="productsLancamentos[3*(productPage-1)+0]"
+                  @onClick="openProductDialog(productsLancamentos[3*(productPage-1)+0])"
                 />
                 <ProductCard
+                  @onClick="openProductDialog(productsLancamentos[3*(productPage-1)+1])"
                   :product="productsLancamentos[3*(productPage-1)+1]"
                 />
                 <ProductCard
+                  @onClick="openProductDialog(productsLancamentos[3*(productPage-1)+2])"
                   :product="productsLancamentos[3*(productPage-1)+2]"
                 />
               </div>
@@ -81,7 +87,7 @@
       </v-tabs-items>
     </div>
     <ProductDialog
-      :product="productsMaisVendidos[0]"
+      :product="productDialog"
       :show="show"
       :loading="false"
       @onConfirm="confirm"

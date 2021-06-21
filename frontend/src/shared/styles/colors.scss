@@ -1,4 +1,9 @@
-$primary-color: #1976d2;
+$primary: #AE8A2C;
+$primaryLight: #E3BA5B;
+$primaryDark: #7B5D00;
+$secondary: #263238;
+$secondaryLight: #4f5b62;
+$secondaryDark: #000a12;
 $text-dark: #3b495b;
 $background: #f3f3f3;
 $lighten: 5;
@@ -6,9 +11,9 @@ $darken: 25;
 
 $colors: (
   primary: (
-    base: $primary-color,
-    light: lighten($primary-color, $lighten),
-    dark: darken($primary-color, $darken),
+    base: $primary,
+    light: lighten($primary, $lighten),
+    dark: darken($primary, $darken),
   ),
   text: (
     light: white,

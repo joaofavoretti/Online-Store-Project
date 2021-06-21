@@ -15,13 +15,11 @@
         width="350"
       ></v-sheet>
 
-      <v-card-title style="text-aling: center">{{ product.name }}</v-card-title>
+      <v-card-title>{{ product.name }}</v-card-title>
 
-      <v-card-text>
-        {{ product.description }}
-      </v-card-text>
+      <v-card-text>{{ product.description }}</v-card-text>
 
-      <div v-html="product.youtubeEmbed"></div>
+      <div v-html="product.youtubeEmbed" class="d-flex justify-center"></div>
 
       <v-card-text class="mt-4"> A partir de {{ product.price | toCurrency }} </v-card-text>
 
@@ -40,8 +38,8 @@
 </template>
 
 <script lang="ts">
-import { ProductsInfo } from "@/store/modules/products/products-types";
-import { Component, Emit, Prop, Vue } from "vue-property-decorator";
+import { ProductsInfo } from '@/store/modules/products/products-types';
+import { Component, Emit, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class ProductDialog extends Vue {
@@ -51,10 +49,10 @@ export default class ProductDialog extends Vue {
 
   @Prop(Boolean) readonly loading: boolean | undefined;
 
-  @Emit("onConfirm")
+  @Emit('onConfirm')
   handleConfirm(): void {}
 
-  @Emit("onClose")
+  @Emit('onClose')
   handleClose(): void {}
 }
 </script>

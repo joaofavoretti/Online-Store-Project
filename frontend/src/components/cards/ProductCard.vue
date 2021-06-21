@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card outlined class="card-style" width="250px" height="350px">
+    <v-card outlined class="card-style" width="250px" height="350px" @click="handleClick">
       <v-img
         v-if="product.src"
         :src="product.src"
@@ -15,7 +15,7 @@
         width="250"
       ></v-sheet>
 
-      <v-card-title style="text-aling: center;">{{ product.name }}</v-card-title>
+      <v-card-title>{{ product.name }}</v-card-title>
       <v-card-text>
         A partir de {{ product.price | toCurrency }}
       </v-card-text>
@@ -24,12 +24,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue, Emit } from 'vue-property-decorator';
 import { ProductsInfo } from '@/store/modules/products/products-types';
 
 @Component
 export default class ProductCard extends Vue {
   @Prop(Object) readonly product: ProductsInfo | undefined
+
+  @Emit('onClick')
+  handleClick() {}
 }
 
 </script>
