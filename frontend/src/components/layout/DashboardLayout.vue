@@ -4,7 +4,7 @@
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-toolbar-title class="brand">
-        <img src="@/assets/logo.svg" width="20%" />
+        <img src="@/assets/logo.png" width="10%" />
       </v-toolbar-title>
 
       <v-spacer />
