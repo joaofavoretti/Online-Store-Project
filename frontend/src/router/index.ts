@@ -3,6 +3,7 @@ import VueRouter, { RouteConfig } from 'vue-router';
 import DashboardLayout from '@/components/layout/DashboardLayout.vue';
 import Inicio from '@/views/Inicio/Inicio.vue';
 import Carrinho from '@/views/Carrinho/Carrinho.vue';
+import PainelAdm from '@/views/PainelAdm/PainelAdm.vue';
 import TodoList from '@/views/TodoList.vue';
 import FormScreen from '@/views/FormScreen.vue';
 
@@ -18,6 +19,7 @@ export const routes: Array<RouteConfig> = [
     children: [
       { path: 'inicio', name: 'inicio', component: Inicio },
       { path: 'carrinho', name: 'carrinho', component: Carrinho },
+      { path: 'painel-adm', name: 'painel-adm', component: PainelAdm },
       { path: 'form-screen', name: 'form-screen', component: FormScreen },
       { path: 'todo-list', name: 'todo-list', component: TodoList },
     ],

@@ -6,7 +6,7 @@
     </div>
 
     <div class="cart-list">
-      <v-simple-table>
+      <v-simple-table fixed-header height="35rem">
         <template v-slot:default>
           <thead>
             <tr>
@@ -63,7 +63,7 @@
       </v-simple-table>
     </div>
 
-    <div class="cart-action-buttons">
+    <div class="cart-action-buttons mt-6">
       <div class="cart-action-back">
         <v-btn text color="primary" @click="backShopping">
           <v-icon>mdi-chevron-left</v-icon>

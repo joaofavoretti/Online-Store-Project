@@ -1,0 +1,12 @@
+@import "./colors.scss";
+
+.table-header-bg-primary {
+  background-color: $primary;
+  // background-color: color-theme(primary, title);
+  font-size: 0.875rem !important;
+  color: white !important;
+
+  i {
+    color: white !important;
+  }
+}
