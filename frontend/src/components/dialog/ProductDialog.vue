@@ -1,6 +1,11 @@
 <template>
-  <v-dialog @click:outside="handleClose" v-model="show" max-width="350px" id="dialog-class">
-    <v-card class="card-style" width="580px">
+  <v-dialog
+    @click:outside="handleClose"
+    v-model="show"
+    max-width="350px"
+    id="dialog-class"
+  >
+    <v-card class="card-style" width="350px">
       <v-img
         v-if="product.src"
         :src="product.src"
@@ -19,9 +24,21 @@
 
       <v-card-text>{{ product.description }}</v-card-text>
 
-      <div v-html="product.youtubeEmbed" class="d-flex justify-center"></div>
+      <div class="d-flex justify-center" v-if="product.youtubeEmbed">
+        <iframe
+          width="320"
+          height="180"
+          :src="product.youtubeEmbed"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
 
-      <v-card-text class="mt-4"> A partir de {{ product.price | toCurrency }} </v-card-text>
+      <v-card-text class="mt-4">
+        A partir de {{ product.price | toCurrency }}
+      </v-card-text>
 
       <v-card-actions class="dialog-actions">
         <v-btn
@@ -38,8 +55,8 @@
 </template>
 
 <script lang="ts">
-import { ProductsInfo } from '@/store/modules/products/products-types';
-import { Component, Emit, Prop, Vue } from 'vue-property-decorator';
+import { ProductsInfo } from "@/store/modules/products/products-types";
+import { Component, Emit, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class ProductDialog extends Vue {
@@ -49,15 +66,14 @@ export default class ProductDialog extends Vue {
 
   @Prop(Boolean) readonly loading: boolean | undefined;
 
-  @Emit('onConfirm')
+  @Emit("onConfirm")
   handleConfirm(): void {}
 
-  @Emit('onClose')
+  @Emit("onClose")
   handleClose(): void {}
 }
 </script>
 
 <style lang="scss" scoped>
 @import "@/shared/styles/dialog.scss";
-
 </style>
