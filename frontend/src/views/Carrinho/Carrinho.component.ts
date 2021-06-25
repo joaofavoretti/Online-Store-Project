@@ -3,14 +3,18 @@ import { Component, Vue } from 'vue-property-decorator';
 import { CartProduct } from '@/store/modules/cart/cart-types';
 import CartStore from '@/store/modules/cart/cart-module';
 import ConfirmationDialog from '@/components/dialog/ConfirmationDialog.vue';
+import FinalizarCompraDialog from '@/components/dialog/FinalizarCompraDialog.vue';
 
 @Component({
   components: {
     ConfirmationDialog,
+    FinalizarCompraDialog,
   },
 })
 export default class Carrinho extends Vue {
   showConfirmation = false;
+
+  showFinalizarCompra = false;
 
   loadingConfirmation = false;
 

@@ -72,7 +72,7 @@
       <div class="cart-action-checkout">
         <h2>Total:</h2>
         <h1>{{ getCartTotal | toCurrency }}</h1>
-        <v-btn block color="primary">Checkout</v-btn>
+        <v-btn block color="primary" @click="showFinalizarCompra = true">Checkout</v-btn>
       </div>
     </div>
 
@@ -83,6 +83,11 @@
       :loading="loadingConfirmation"
       @onClick="confirmRemove"
       @onClose="confirmClose"
+    />
+
+    <FinalizarCompraDialog
+      :show="showFinalizarCompra"
+      @onClose="showFinalizarCompra = false"
     />
 
   </v-container>

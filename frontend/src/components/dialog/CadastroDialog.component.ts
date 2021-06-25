@@ -16,7 +16,7 @@ export default class LoginDialog extends Vue {
   @Emit('onClose')
   handleClose(): void {
     this.user = { name: '', phone: '', email: '', address: '', password: '' };
-    this.validator.errors = {};
+    this.validator = { errors: {}, isValid: false };
   }
 
   showPassword = false;

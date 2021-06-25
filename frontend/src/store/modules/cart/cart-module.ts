@@ -1,4 +1,4 @@
-import { VuexModule, Module, getModule, MutationAction } from 'vuex-module-decorators';
+import { VuexModule, Module, getModule, Mutation, Action } from 'vuex-module-decorators';
 import store from '@/store/index';
 import { CartProduct } from './cart-types';
 
@@ -15,16 +15,22 @@ class CartStore extends VuexModule {
     { id: 6, name: 'Produto 5', quantity: 5, price: 10, src: 'https://images.unsplash.com/photo-1452251889946-8ff5ea7b27ab?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=730&q=80' },
   ];
 
-  @MutationAction({ mutate: ['products'] })
-  async fetchCartProducts(): Promise<Array<CartProduct>> {
+  @Action
+  async fetchCartProducts(): Promise<void> {
+    this.setLoading(true);
     // TODO: Create service to fetch cart products from endpoint
     // const products = CartService.fetchCartProducts();
     // return product;
-    return this.products;
+    this.setLoading(false);
   }
 
   get isLoading():boolean {
-    return this.loading
+    return this.loading;
+  }
+
+  @Mutation
+  setLoading(value: boolean) {
+    this.loading = value;
   }
 
   get getCart(): Array<CartProduct> {

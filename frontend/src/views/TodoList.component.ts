@@ -4,7 +4,7 @@ import TodoStore from '@/store/modules/todo/todo-module';
 
 @Component
 export default class TodoList extends Vue {
-  async mounted(): void {
+  async mounted(): Promise<void> {
     await TodoStore.fetchTodoList();
   }
 
