@@ -8,7 +8,7 @@ class ProductsStore extends VuexModule {
 
   productsMaisVendidos: Array<ProductsInfo> = [
     { id: 1, quantity: 5, name: 'Produto 0', price: 1, description: 'Muito gostoso', youtubeEmbed: 'https://www.youtube.com/embed/wtlfcHmfKW0', src: 'https://images.unsplash.com/photo-1495461199391-8c39ab674295?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80' },
-    { id: 2, quantity: 5, name: 'Produto 1', price: 1, youtubeEmbed: 'https://www.youtube.com/watch?v=c_ZMfat0xX4', src: 'https://images.unsplash.com/photo-1466637574441-749b8f19452f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80' },
+    { id: 2, quantity: 5, name: 'Produto 1', price: 1, src: 'https://images.unsplash.com/photo-1466637574441-749b8f19452f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80' },
     { id: 3, quantity: 5, name: 'Produto 2', price: 1, src: 'https://images.unsplash.com/reserve/EnF7DhHROS8OMEp2pCkx_Dufer%20food%20overhead%20hig%20res.jpg?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1057&q=80' },
     { id: 4, quantity: 5, name: 'Produto 3', price: 10, src: 'https://images.unsplash.com/photo-1556909172-89cf0b24ff02?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80' },
     { id: 5, quantity: 5, name: 'Produto 4', price: 10, src: 'https://images.unsplash.com/photo-1491185841098-9ce20f966624?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80' },
