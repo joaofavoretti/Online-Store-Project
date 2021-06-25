@@ -53,6 +53,11 @@ export default class PainelAdm extends Vue {
     this.showRemoveClient = false;
   }
 
+  addProduto() {
+    this.product = { id: 0, name: '', price: 0, quantity: 0, description: '', youtubeEmbed: '', src: '' };
+    this.showEditProduct = true;
+  }
+
   saveProduct(): void {
     // ProductsStore.saveProduct(this.product);
     this.showEditProduct = false;

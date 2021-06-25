@@ -7,7 +7,7 @@
     <div class="painel-ingredientes">
       <div class="painel-ingredientes-header mb-4">
         <h1>Ingredientes cadastrados</h1>
-        <v-btn color="primary">Adicionar produto</v-btn>
+        <v-btn color="primary" @click="addProduto">Adicionar produto</v-btn>
       </div>
       <v-data-table
         locale="pt-BR"
