@@ -1,9 +1,11 @@
-import { VuexModule, Module, getModule } from 'vuex-module-decorators';
+import { VuexModule, Module, getModule, Action, Mutation } from 'vuex-module-decorators';
 import store from '@/store/index';
 import { ClientsInfo } from './clients.types';
 
 @Module({ namespaced: true, name: 'clients', dynamic: true, store })
 class ClientsStore extends VuexModule {
+  loading = false;
+
   clientes: Array<ClientsInfo> = [
     { id: 1, name: 'Cliente 1', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
     { id: 2, name: 'Cliente 2', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
@@ -22,8 +24,36 @@ class ClientsStore extends VuexModule {
     { id: 15, name: 'Cliente 15', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
   ]
 
+  @Action
+  removeClient(clientId: number) {
+    this.setLoading(true);
+
+    // TODO: Remove clients service
+
+    this.fetchClients();
+    this.setLoading(false);
+  }
+
+  @Action
+  fetchClients() {
+    this.setLoading(true);
+
+    // TODO: Fetch clients service
+
+    this.setLoading(false);
+  }
+
   get getClientsAll(): Array<ClientsInfo> {
     return this.clientes;
+  }
+
+  get getLoading() {
+    return this.loading;
+  }
+
+  @Mutation
+  setLoading(value: boolean):void {
+    this.loading = value;
   }
 }
 

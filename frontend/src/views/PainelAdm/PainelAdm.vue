@@ -13,13 +13,13 @@
           locale="pt-BR"
           :headers="productHeaders"
           :items="getProducts"
-          :loading="loading"
+          :loading="getProductsLoading"
           no-data-text="Desculpe, mas não foi encontrado nenhum ingrediente."
           :header-props="{
             sortIcon: 'mdi-chevron-up',
           }"
           loading-text="Carregando dados"
-          items-per-page="5"
+          :items-per-page="5"
           :footer-props="{
             'items-per-page-all-text': 'Todos',
             'items-per-page-text': 'Máximo de itens por página',
@@ -60,8 +60,8 @@
           locale="pt-BR"
           :headers="clientHeaders"
           :items="getClients"
-          :loading="loading"
-          items-per-page="5"
+          :loading="getClientsLoading"
+          :items-per-page="5"
           no-data-text="Desculpe, mas não foi encontrado nenhum cliente."
           :header-props="{
             sortIcon: 'mdi-chevron-up',
@@ -87,10 +87,19 @@
              {{ item.email }}
           </template>
           <template v-slot:[`item.id`]="{ item }">
-            <v-btn text color="red">Remover</v-btn>
+            <v-btn text color="red" @click="handleRemoveClient(item.id)">Remover</v-btn>
           </template>
         </v-data-table>
     </div>
+
+    <RemoveClientDialog
+      :show="showRemoveClient"
+      :loading="getClientsLoading"
+      :client="client"
+      @onClose="showRemoveClient = false"
+      @onConfirm="removeClient"
+    />
+
   </v-container>
 </template>
 

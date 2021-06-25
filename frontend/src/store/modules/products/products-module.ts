@@ -1,9 +1,11 @@
-import { VuexModule, Module, getModule } from 'vuex-module-decorators';
+import { VuexModule, Module, getModule, Mutation } from 'vuex-module-decorators';
 import store from '@/store/index';
 import { ProductsInfo } from './products-types';
 
 @Module({ namespaced: true, name: 'products', dynamic: true, store })
 class ProductsStore extends VuexModule {
+  loading = false;
+
   productsMaisVendidos: Array<ProductsInfo> = [
     { id: 1, quantity: 5, name: 'Produto 0', price: 1, description: 'Muito gostoso', youtubeEmbed: '<iframe width="320" height="180" src="https://www.youtube.com/embed/wtlfcHmfKW0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>', src: 'https://images.unsplash.com/photo-1495461199391-8c39ab674295?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80' },
     { id: 2, quantity: 5, name: 'Produto 1', price: 1, src: 'https://images.unsplash.com/photo-1466637574441-749b8f19452f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80' },
@@ -53,6 +55,15 @@ class ProductsStore extends VuexModule {
 
   get getProductsAll(): Array<ProductsInfo> {
     return this.productsAll;
+  }
+
+  get getLoading(): boolean {
+    return this.loading;
+  }
+
+  @Mutation
+  setLoading(value: boolean) {
+    this.loading = value;
   }
 }
 
