@@ -1,28 +1,35 @@
 import { RequestResponse } from '@/shared/models/request-response-model';
-import { AuthenticationTokens, AuthLocalKeys } from '@/store/modules/auth/auth-types';
+import { AuthenticationTokens, AuthLocalKeys, UserCadastro } from '@/store/modules/auth/auth-types';
 import Api from './api';
 
 export default class AuthenticationService {
-
   static async login(token: string): Promise<void> {
-    const headers = { Authorization: token };
-
-    // TODO: Requisicao para autenticacao
-    // const { data: res } = await Api.post<any, RequestResponse<AuthenticationTokens>>('your/authentication/token/uri', {}, { headers });
-
-    this.setLocalStorageAuth(token);
+    const [email, password] = atob(token).split(":");
+    const user: UserCadastro = { email, password, name: 'Conta teste', phone: '(99) 99999-9999', address: '221b Baker Street' };
+    this.setLocalStorageAuth(user);
   }
 
   static async logoff(): Promise<void> {
     this.clearLocalStorageAuth();
   }
 
-  static setLocalStorageAuth(token: string): void {
-    localStorage.setItem(AuthLocalKeys.TOKEN, token);
+  static async signin(userCadastro: UserCadastro): Promise<void> {
+    // TODO: Endpoint to create account
   }
 
-  static get getLocalStorageAuth(): string | null {
-    return localStorage.getItem(AuthLocalKeys.TOKEN);
+  static setLocalStorageAuth(user: UserCadastro): void {
+    const b64user = btoa(JSON.stringify(user));
+    localStorage.setItem(AuthLocalKeys.TOKEN, b64user);
+  }
+
+  static get getLocalStorageAuth(): UserCadastro | null {
+    const userStringified = localStorage.getItem(AuthLocalKeys.TOKEN);
+
+    if (userStringified !== null) {
+      return JSON.parse(atob(userStringified));
+    }
+
+    return null;
   }
 
   static clearLocalStorageAuth(): void {

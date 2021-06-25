@@ -3,6 +3,14 @@ export interface User {
   password: string;
 }
 
+export interface UserCadastro {
+  name: string;
+  phone: string,
+  email: string,
+  address: string,
+  password: string,
+}
+
 export interface AuthenticationTokens {
   accessToken: string;
 }

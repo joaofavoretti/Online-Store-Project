@@ -1,28 +1,31 @@
 import { Component, Prop, Emit, Vue } from 'vue-property-decorator';
-import { User } from '@/store/modules/auth/auth-types';
+import { UserCadastro } from '@/store/modules/auth/auth-types';
 import YupFormValidator from '@/shared/yup/yup-form-validator';
 import AuthStore from '@/store/modules/auth/auth-module';
-import loginSchema from '@/shared/validations/login-validation-schema';
+import cadastroSchema from '@/shared/validations/cadastro-validation-schema';
 
 @Component
 export default class LoginDialog extends Vue {
   @Prop(Boolean) readonly show: boolean | undefined;
 
-  @Emit('onCreate')
-  handleCreate(): void {
+  @Emit('onLogin')
+  handleEntrar(): void {
     this.handleClose();
   }
 
   @Emit('onClose')
   handleClose(): void {
-    this.user = { email: '', password: '' };
+    this.user = { name: '', phone: '', email: '', address: '', password: '' };
     this.validator.errors = {};
   }
 
   showPassword = false;
 
-  user: User = {
+  user: UserCadastro = {
+    name: '',
+    phone: '',
     email: '',
+    address: '',
     password: '',
   };
 
@@ -31,16 +34,16 @@ export default class LoginDialog extends Vue {
     isValid: false,
   };
 
-  async validate(fieldname: keyof User): void {
-    this.validator = await YupFormValidator.validate(loginSchema, fieldname, this.user);
+  async validate(fieldname: keyof UserCadastro): void {
+    this.validator = await YupFormValidator.validate(cadastroSchema, fieldname, this.user);
   }
 
   get loading(): boolean {
     return AuthStore.isLoading;
   }
 
-  async login(): void {
-    await AuthStore.login(this.user);
+  async signin(): void {
+    await AuthStore.signin(this.user);
     this.handleClose();
   }
 }

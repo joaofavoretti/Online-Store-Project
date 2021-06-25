@@ -23,13 +23,13 @@
             </v-list-item-avatar>
             <v-list-item-content>
               <v-list-item-title class="text-h6">
-                Conta teste
+                {{ userLogged.name }}
               </v-list-item-title>
-              <v-list-item-subtitle>teste@gmail.com</v-list-item-subtitle>
+              <v-list-item-subtitle>{{ userLogged.email }}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
 
-          <v-list-item class="px-2" v-else @click="loginDialog = true">
+          <v-list-item class="px-2" v-else @click="openLoginDialog">
             <v-list-item-avatar>
               <v-icon>mdi-account</v-icon>
             </v-list-item-avatar>
@@ -64,9 +64,16 @@
 
     <LoginDialog
       :show="loginDialog"
-      :loading="false"
-      @onCreate=""
+      :loading="isLoading"
+      @onCreate="openCadastroDialog"
       @onClose="loginDialog = false"
+    />
+
+    <CadastroDialog
+      :show="cadastroDialog"
+      :loading="isLoading"
+      @onLogin="openLoginDialog"
+      @onClose="cadastroDialog = false"
     />
 
     <ConfirmationDialog
