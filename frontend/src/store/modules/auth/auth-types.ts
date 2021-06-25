@@ -1,17 +1,14 @@
 export interface User {
-  username: string;
+  email: string;
   password: string;
 }
 
 export interface AuthenticationTokens {
   accessToken: string;
-  refreshToken: string;
-  systemClient: string;
 }
 
-export enum AuthSessionKeys {
+export enum AuthLocalKeys {
   TOKEN = '@auth/token',
-  REFRESH_TOKEN = '@auth/refresh-token',
 }
 
 export enum AuthErrors {

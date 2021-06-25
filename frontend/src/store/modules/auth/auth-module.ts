@@ -8,14 +8,15 @@ import { User } from './auth-types';
 class AuthStore extends VuexModule {
   loading = false;
 
-  signed = false;
+  signed = !!AuthenticationService.getLocalStorageAuth;
 
   @Action({ rawError: true })
   async login(user: User) {
     try {
       this.setLoading(true);
-      const userToken = `Basic ${btoa(`${user.username}:${user.password}`)}`;
+      const userToken = btoa(`${user.email}:${user.password}`);
       await AuthenticationService.login(userToken);
+      this.setSigned(true);
     } catch (error) {
       const [message] = error.data.messages[0];
       Vue.toasted.global.customError(message);
@@ -24,22 +25,36 @@ class AuthStore extends VuexModule {
     }
   }
 
-  get isSigned() {
+  @Action
+  async logoff() {
+    try {
+      this.setLoading(true);
+      await AuthenticationService.logoff();
+      this.setSigned(false);
+    } catch (error) {
+      const [message] = error.data.messages[0];
+      Vue.toasted.global.customError(message);
+    } finally {
+      this.setLoading(false);
+    }
+  }
+
+  get isSigned(): boolean {
     return this.signed;
   }
 
-  get isLoading() {
+  get isLoading(): boolean {
     return this.loading;
-  }
-
-  @Mutation
-  setSigned(value: boolean) {
-    this.signed = value;
   }
 
   @Mutation
   setLoading(value: boolean) {
     this.loading = value;
+  }
+
+  @Mutation
+  setSigned(value: boolean) {
+    this.signed = value;
   }
 }
 

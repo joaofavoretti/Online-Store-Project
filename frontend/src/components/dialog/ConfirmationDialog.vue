@@ -1,7 +1,7 @@
 <template>
   <v-dialog @click:outside="handleClose" v-model="show" max-width="480">
     <v-card class="dialog-content">
-      <div class="dialog-header">
+      <div class="dialog-header text-center">
         <v-icon size="35" color="primary">mdi-alert</v-icon>
         <span>
           <template>{{ title }}</template>
