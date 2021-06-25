@@ -51,7 +51,7 @@
                     <v-text-field outlined v-model="product.quantity" type="number" min="1" max="50" />
                   </v-row>
                   <v-row>
-                    <v-btn text color="red">
+                    <v-btn text color="red" @click="showRemoveConfirmation(product.id)">
                       Remover
                     </v-btn>
                   </v-row>
@@ -75,6 +75,16 @@
         <v-btn block color="primary">Checkout</v-btn>
       </div>
     </div>
+
+    <ConfirmationDialog
+      title="Remover produto?"
+      :description="confirmationDescription"
+      :show="showConfirmation"
+      :loading="loadingConfirmation"
+      @onClick="confirmRemove"
+      @onClose="confirmClose"
+    />
+
   </v-container>
 </template>
 
