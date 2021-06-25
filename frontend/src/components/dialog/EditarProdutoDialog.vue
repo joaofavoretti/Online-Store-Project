@@ -82,7 +82,7 @@
                 name="price"
                 @blur="validate('price')"
                 :error-messages="validator.errors.price"
-                v-model="product.price"
+                v-model.number="product.price"
               />
             </v-col>
             <v-col cols=6>
