@@ -19,8 +19,18 @@ class CartStore extends VuexModule {
   async fetchCartProducts(): Promise<void> {
     this.setLoading(true);
     // TODO: Create service to fetch cart products from endpoint
-    // const products = CartService.fetchCartProducts();
-    // return product;
+
+    this.setLoading(false);
+  }
+
+  @Action
+  addToCart(product: ProductsInfo): Promise<void> {
+    this.setLoading(true);
+
+    // TODO: Create service to add product to Cart
+
+    // TODO: Fetch Cart again
+
     this.setLoading(false);
   }
 

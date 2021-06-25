@@ -81,7 +81,7 @@
       :description="confirmationDescription"
       :show="showConfirmation"
       :loading="loadingConfirmation"
-      @onClick="confirmRemove"
+      @onConfirm="confirmRemove"
       @onClose="confirmClose"
     />
 

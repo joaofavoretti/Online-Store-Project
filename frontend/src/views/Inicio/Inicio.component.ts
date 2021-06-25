@@ -6,6 +6,7 @@ import PicturesStore from '@/store/modules/pictures/pictures-module';
 import ProductsStore from '@/store/modules/products/products-module';
 import { CaroulselPictures } from '@/store/modules/pictures/pictures-types';
 import { ProductsInfo } from '@/store/modules/products/products-types';
+import CartStore from '@/store/modules/cart/cart-module';
 
 @Component({
   components: {
@@ -15,11 +16,11 @@ import { ProductsInfo } from '@/store/modules/products/products-types';
 })
 export default class Inicio extends Vue {
   carouselModel = 0;
-  show = true;
+  show = false;
   productLancamentosShowModel = 0;
   productMaisVendidosShowModel = 0;
   productTab = null;
-  productDialog: ProductsInfo | null = null;
+  productDialog: ProductsInfo = { id: 0, name: '', price: 0, quantity: 0, description: '', youtubeEmbed: '', src: '' };
 
   get pictures(): Array<CaroulselPictures> {
     return PicturesStore.getPictures;
@@ -35,7 +36,7 @@ export default class Inicio extends Vue {
 
   confirm(): void {
     // TODO: Adicionar ao carrinho
-    console.log('Adicionar ao carrinho');
+    CartStore.addToCart(this.productDialog);
   }
 
   openProductDialog(product: ProductsInfo): void {

@@ -20,9 +20,9 @@ export default class PainelAdm extends Vue {
 
   showEditProduct = false;
 
-  client: ClientsInfo | null = { id: -1, name: '', phone: '', email: '', address: '' };
+  client: ClientsInfo = { id: -1, name: '', phone: '', email: '', address: '' };
 
-  product: ProductsInfo | null = { id: 0, name: '', price: 0, quantity: 0, description: '', youtubeEmbed: '', src: '' };
+  product: ProductsInfo = { id: 0, name: '', price: 0, quantity: 0, description: '', youtubeEmbed: '', src: '' };
 
   productHeaders = [
     { text: 'Ingrediente', align: 'start', sortable: true, value: 'name', class: 'table-header-bg-primary' },
@@ -49,14 +49,11 @@ export default class PainelAdm extends Vue {
   }
 
   removeClient(): void {
-    if (this.client === null) return;
-
     ClientsStore.removeClient(this.client.id);
     this.showRemoveClient = false;
   }
 
   saveProduct(): void {
-    if (this.product === null) return;
     // ProductsStore.saveProduct(this.product);
     this.showEditProduct = false;
   }
