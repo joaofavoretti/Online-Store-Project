@@ -2,13 +2,15 @@
 
 Trabalho da disciplina Introdução ao Desenvolvimento Web - SCC0219
 
+---
+
 ### Grupo 6 - Integrantes:
 
 - Joao Pedro Favoretti (Nusp: 11316055)
 - Lucas Pilla Pimentel (Nusp: 10633328)
 - Luiz Fernando Santos (Nusp: 10892680)
 
-<br>
+---
 
 ### Requerimentos
 
@@ -27,7 +29,7 @@ Trabalho da disciplina Introdução ao Desenvolvimento Web - SCC0219
 - Funcionalidade **específica**: Ao acessar um ingrediente, o cliente pode selecionar uma receita e adicionar os ingredientes necessários para ela diretamente ao carrinho. Além disso, ao abrir os detalhes de um ingrediente, as receitas são listadas a baixo e um video no Youtube sobre a receita também é direcionado.
 - O sistema deve atender os requisitos de acessibilidade e prover boa usabilidade. Além disso o sistema deve ser responsivo.
 
-<br>
+---
 
 ### Descricão do projeto
 
@@ -57,11 +59,7 @@ Para visualizar as páginas estáticas implementadas, é possível utilizar os s
 - [Carrinho](https://joaofavoretti.github.io/Online-Store-Project/Mockup/cart.html)
 - [Página do administrador](https://joaofavoretti.github.io/Online-Store-Project/Mockup/admin-page.html)
 
-
-
-
-
-<br>
+---
 
 ### Comentários sobre o código
 Primeiramente, o nosso frontend esta dentro da pasta [frontend](https://github.com/joaofavoretti/Online-Store-Project/tree/main/frontend).
@@ -85,14 +83,17 @@ Além disso, vale comentar que por baixo das telas da pasta views, criamos um ar
 
 Com o site sem integração com o backend, nenhuma das funcionalidades ainda funcionam de fato. É possível ver todas as telas feitas no mockup, mas ao clicar em "Logar", "Comprar", "Atualizar", nada é feito por baixo dos panos, as dialogs com os botões somente fecham por enquanto. Porém, é possível "Logar" de forma simples no site. Ao clicar em "Não logado", a caixa de login abre e é possível entrar com qualquer informações para e-mail e senha que atendam os validadores de campos. Como por exemplo:
 
-![image](https://user-images.githubusercontent.com/31491328/123686625-5ddc2f00-d826-11eb-97ad-669e281bd08e.png)
-
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/31491328/123686625-5ddc2f00-d826-11eb-97ad-669e281bd08e.png">
+</p>
+    
 Após clicar em "Entrar", um nome mockado ("Conta teste") e o e-mail digitado aparecerão no Navigation Drawer à esquerda: 
 
-![image](https://user-images.githubusercontent.com/31491328/123686848-9ed44380-d826-11eb-8ec1-8b92ea7172dd.png)
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/31491328/123686848-9ed44380-d826-11eb-8ec1-8b92ea7172dd.png">
+</p>
 
-
-<br>
+---
 
 ### Plano de teste
 No plano de testes utilizado não foi utilizado nenhuma biblioteca de testes unitários. Os testes foram realizados na mão nos campos de entrada.
@@ -102,8 +103,7 @@ Um exemplo de validação é o formulario de login do site. No campo de e-mail, 
 
 Os demais campos pelo site tem suas devidas validações e mascaras quando necessário.
 
-
-<br>
+---
 
 ### Build Procedures
 #### Node
@@ -124,12 +124,12 @@ npm run serve
 
 Assim, depois que o processo terminar, utilize seu navegador para acessar o endereço [localhost:8080](http://localhost:8080) e acessar o site.
 
-<br>
+---
 
 ### Problemas
+Nenhum problema grave encontrado até o momento.
 
-
-<br>
+---
 
 ### Comentários
 
