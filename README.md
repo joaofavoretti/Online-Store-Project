@@ -97,7 +97,7 @@ Após clicar em "Entrar", um nome mockado ("Conta teste") e o e-mail digitado ap
 
 ### Plano de teste
 No plano de testes utilizado não foi utilizado nenhuma biblioteca de testes unitários. Os testes foram realizados na mão nos campos de entrada.
-Para sanar todos os casos possíveis nos campos de input, usamos a biblioteca "yup" para validar as entradas onBlur e mascaras para não permitir que o campo seja preenchido da forma indevida.
+Para sanar todos os casos possíveis nos campos de input, usamos a biblioteca "yup" para validar as entradas "on blur" e mascaras para não permitir que o campo seja preenchido da forma indevida.
 
 Um exemplo de validação é o formulario de login do site. No campo de e-mail, é exigido que o formato do e-mail seja valido, caso o contrário o botão de "Entrar" não é habilitado. Do mesmo modo o campo de senha espera uma senha de 6 digitos sem caracteres alfabeticos (Usamos uma máscara no campo para não permitir que caracteres alfabeticos sejam utilizados).
 
