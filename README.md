@@ -64,31 +64,69 @@ Para visualizar as páginas estáticas implementadas, é possível utilizar os s
 <br>
 
 ### Comentários sobre o código
+Primeiramente, o nosso frontend esta dentro da pasta [frontend](https://github.com/joaofavoretti/Online-Store-Project/tree/main/frontend).
 
+A estrutura de pastas do projeto:
+![image](https://user-images.githubusercontent.com/31491328/123684391-c5dd4600-d823-11eb-9535-3e76c6ccf167.png)
+
+Para deixar o código padronizado, usamos a seguinte estrutura de pastas no projeto:
+- public: Arquivos para configurar a aplicação em Vue (index.html e favicon.ico)
+- src: Arquivos usados para criar o conteudo do site
+    - assets: Contem arquivos estaticos do projeto (No nosso caso só possui a imagem que usamos para nossa loja)
+    - components: Componentes principais que usamos pelo projeto todo.
+    - plugins: Arquivos de configurações de plugins
+    - router: Possui arquivo para configuração de rotas
+    - services: Pasta que futuramente ficará as URIs de serviços que faremos usando o backend
+    - shared: Arquivos compartilhados pelo código, como filtros, styles, validations, etc..
+    - store: Onde ficaram os módulos que usamos nas telas.
+    - views: Arquivos considerados telas principais do site, tal como Inicio, Carrinho e Painel do Administrador.
+
+Além disso, vale comentar que por baixo das telas da pasta views, criamos um arquivo chamado [DashboardLayout.vue](https://github.com/joaofavoretti/Online-Store-Project/blob/main/frontend/src/components/layout/DashboardLayout.vue) para servir como root("/") do nosso objeto de [rotas](https://github.com/joaofavoretti/Online-Store-Project/blob/main/frontend/src/router/index.ts). E foi assim que fizemos as transições por meio do Navigation Drawer da tela.
+
+Com o site sem integração com o backend, nenhuma das funcionalidades ainda funcionam de fato. É possível ver todas as telas feitas no mockup, mas ao clicar em "Logar", "Comprar", "Atualizar", nada é feito por baixo dos panos, as dialogs com os botões somente fecham por enquanto. Porém, é possível "Logar" de forma simples no site. Ao clicar em "Não logado", a caixa de login abre e é possível entrar com qualquer informações para e-mail e senha que atendam os validadores de campos. Como por exemplo:
+
+![image](https://user-images.githubusercontent.com/31491328/123686625-5ddc2f00-d826-11eb-97ad-669e281bd08e.png)
+
+Após clicar em "Entrar", um nome mockado ("Conta teste") e o e-mail digitado aparecerão no Navigation Drawer à esquerda: 
+
+![image](https://user-images.githubusercontent.com/31491328/123686848-9ed44380-d826-11eb-8ec1-8b92ea7172dd.png)
 
 
 <br>
 
 ### Plano de teste
+No plano de testes utilizado não foi utilizado nenhuma biblioteca de testes unitários. Os testes foram realizados na mão nos campos de entrada.
+Para sanar todos os casos possíveis nos campos de input, usamos a biblioteca "yup" para validar as entradas onBlur e mascaras para não permitir que o campo seja preenchido da forma indevida.
 
+Um exemplo de validação é o formulario de login do site. No campo de e-mail, é exigido que o formato do e-mail seja valido, caso o contrário o botão de "Entrar" não é habilitado. Do mesmo modo o campo de senha espera uma senha de 6 digitos sem caracteres alfabeticos (Usamos uma máscara no campo para não permitir que caracteres alfabeticos sejam utilizados).
 
-
-<br>
-
-### Resultados do teste
-
+Os demais campos pelo site tem suas devidas validações e mascaras quando necessário.
 
 
 <br>
 
 ### Build Procedures
+#### Node
+Para rodar o site na sua máquina, você deve ter o Node e o gerenciador de pacotes npm instalado na sua máquina.
+Caso você não tenha, faça o [download pelo site oficial](https://nodejs.org/pt-br/download/package-manager/), de acordo com o seu sistema operacional. 
 
+#### Setup
+Após ter o npm instalado, utilize o seguinte comando para instalar todas as dependencias do projeto:
+```
+npm install
+```
 
+#### Compile
+Após instalar as dependencias do projeto, para rodar a apliação utilize o comando:
+```
+npm run serve
+```
+
+Assim, depois que o processo terminar, utilize seu navegador para acessar o endereço [localhost:8080](http://localhost:8080) e acessar o site.
 
 <br>
 
 ### Problemas
-
 
 
 <br>
