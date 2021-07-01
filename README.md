@@ -110,6 +110,8 @@ Os demais campos pelo site tem suas devidas validações e mascaras quando neces
 Para rodar o site na sua máquina, você deve ter o Node e o gerenciador de pacotes npm instalado na sua máquina.
 Caso você não tenha, faça o [download pelo site oficial](https://nodejs.org/pt-br/download/package-manager/), de acordo com o seu sistema operacional. 
 
+Execute os comandos abaixo no diretorio ```/frontend``` do repositório
+
 #### Setup
 Após ter o npm instalado, utilize o seguinte comando para instalar todas as dependencias do projeto:
 ```
