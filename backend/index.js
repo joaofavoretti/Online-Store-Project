@@ -1,11 +1,15 @@
 const express = require('express');
 const http = require('http');
 var cors = require('cors');
-
+const moongoose = require('./db/index');
+const User = require('./db/user');
+const Product = require('./db/product');
 
 const app = express();
 
 /* Config */
+
+// Server configs
 app.use(express.static('public'))
 app.use(express.json());
 app.use(express.urlencoded({ extened: false }));
@@ -17,10 +21,7 @@ const server = http.createServer(app);
 const router = express.Router();
 
 
-var db = new Object();
-var db_sales = new Object();
-db["teste@gmail.com"] = { email: "teste@gmail.com", password: "111111", name: 'Conta teste', phone: '(99) 99999-9999', address: '221b Baker Street' };
-
+// DB configs
 var products = [
     { id: 1, quantity: 5, name: 'Produto 0', price: 1, description: 'Muito gostoso', youtubeEmbed: 'https://www.youtube.com/embed/wtlfcHmfKW0', src: 'https://images.unsplash.com/photo-1495461199391-8c39ab674295?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80' },
     { id: 2, quantity: 5, name: 'Produto 1', price: 1, src: 'https://images.unsplash.com/photo-1466637574441-749b8f19452f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80' },
@@ -57,29 +58,37 @@ var products = [
     { id: 15, name: 'Cliente 15', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
   ]
 
+/* Routes */
+
 // Register
-const registerRoute = router.post('/signup', (req, res, next) => {
+const registerRoute = router.post('/signup', async (req, res, next) => {
     const data = req.body;
     const email = data.email;
-    if (email in db) {
+
+    const oldUser = await User.find({ "email": email });
+    if (oldUser.length != 0) {
         res.status(200).send();    
     } else {
-        db[email] = data;
+        const allUsers = await User.find({  });
+        const total = allUsers.length+1;
+        data["id"] = total;
         console.log(data);
+        const user = await User.create(data);
         res.status(201).send();  
     }
+    
 });
 
 // Login
-const loginRoute = router.post('/login', (req, res, next) => {
+const loginRoute = router.post('/login', async (req, res, next) => {
     const token = req.body.token
     const [email, password] = atob(token).split(":");
     
-    if (email in db) {
-        const data = db[email];
-        if (data["password"] == password) {
-            res.status(202).send(JSON.stringify(data));
-        } 
+    const user = await User.find({ "email": email, "password": password });
+    if (user.length != 0) {
+        const data = user[0];
+        delete data["id"];
+        res.status(202).send(JSON.stringify(data));
     }
     res.status(200).send();            
 });
@@ -92,14 +101,20 @@ const saleRoute = router.post('/sale', (req, res, next) => {
 });
 
 // Get Products
-const getProductsRoute = router.get('/products', (req, res, next) => {
+const getProductsRoute = router.get('/products', async (req, res, next) => {
+    //const products = await Product.find({},{_id: 0, __v: 0});
+
     res.status(200).send(products);            
 });
 
 // Save Product
-const saveProductsRoute = router.post('/products', (req, res, next) => {
-    products.push(req.body);
+const saveProductsRoute = router.post('/products', async (req, res, next) => {
+    //const allProducts = await Product.find({});
+    //var data = req.body;
+    //data["id"] = allProducts.length+1;
+    //const products = await Product.create(data);
 
+    products.push(data);
     res.status(200).send();            
 });
 
