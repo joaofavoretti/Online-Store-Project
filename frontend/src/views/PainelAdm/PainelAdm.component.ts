@@ -3,7 +3,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import ProductsStore from '@/store/modules/products/products-module';
 import ClientsStore from '@/store/modules/clients/clients-module';
 import { ProductsInfo } from '@/store/modules/products/products-types';
-import { ClientsInfo } from '@/store/modules/clients/clients.types';
+import { ClientsInfo } from '@/store/modules/clients/clients-types';
 import RemoveClientDialog from '@/components/dialog/RemoveClientDialog.vue';
 import EditarProdutoDialog from '@/components/dialog/EditarProdutoDialog.vue';
 
@@ -38,6 +38,11 @@ export default class PainelAdm extends Vue {
     { text: '', align: 'end', value: 'id', sortable: false, class: 'table-header-bg-primary' },
   ];
 
+  beforeMount(){
+    ProductsStore.getProducts();
+    ClientsStore.fetchClients();
+  };
+
   handleRemoveClient(clientId: number):void {
     [this.client] = this.getClients.filter((client) => client.id === clientId);
     this.showRemoveClient = true;
@@ -59,7 +64,7 @@ export default class PainelAdm extends Vue {
   }
 
   saveProduct(): void {
-    // ProductsStore.saveProduct(this.product);
+    ProductsStore.saveProduct(this.product);
     this.showEditProduct = false;
   }
 

@@ -3,18 +3,32 @@ import { AuthenticationTokens, AuthLocalKeys, UserCadastro } from '@/store/modul
 import Api from './api';
 
 export default class AuthenticationService {
-  static async login(token: string): Promise<void> {
+  static async login(token: string): Promise<boolean> {
     const [email, password] = atob(token).split(":");
-    const user: UserCadastro = { email, password, name: 'Conta teste', phone: '(99) 99999-9999', address: '221b Baker Street' };
-    this.setLocalStorageAuth(user);
+    
+    const response = await Api.post("/login", {token: token});
+
+    if (response.status == 202) {
+      const user: UserCadastro = response.data;
+      this.setLocalStorageAuth(user);
+      return true;
+    } else {
+      alert("Email ou senha incorreto");
+      return false;
+    }
   }
 
   static async logoff(): Promise<void> {
     this.clearLocalStorageAuth();
   }
 
-  static async signin(userCadastro: UserCadastro): Promise<void> {
-    // TODO: Endpoint to create account
+  static async signup(userCadastro: UserCadastro): Promise<boolean> {
+    const response = await Api.post("/signup", userCadastro);
+    if (response.status == 201) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   static setLocalStorageAuth(user: UserCadastro): void {

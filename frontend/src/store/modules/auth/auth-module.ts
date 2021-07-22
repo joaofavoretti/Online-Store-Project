@@ -17,8 +17,8 @@ class AuthStore extends VuexModule {
     try {
       this.setLoading(true);
       const userToken = btoa(`${user.email}:${user.password}`);
-      await AuthenticationService.login(userToken);
-      this.setSigned(true);
+      const success = await AuthenticationService.login(userToken); 
+      if (success) this.setSigned(true);
     } catch (error) {
       const [message] = error.data.messages[0];
       Vue.toasted.global.customError(message);
@@ -44,14 +44,15 @@ class AuthStore extends VuexModule {
   }
 
   @Action
-  async signin(userCadastro: UserCadastro): Promise<void> {
+  async signup(userCadastro: UserCadastro): Promise<void> {
     try {
       this.setLoading(true);
-      await AuthenticationService.signin(userCadastro);
+      const success = await AuthenticationService.signup(userCadastro);
 
-      // TODO: Usar o servico de login para logar e o servico de cadastro para cadastro
-      const user: User = { email: userCadastro.email, password: userCadastro.password };
-      await this.login(user);
+      if (success) {
+        const user: User = { email: userCadastro.email, password: userCadastro.password };
+        await this.login(user);
+      }
     } catch (error) {
       const [message] = error.data.messages[0];
       Vue.toasted.global.customError(message);

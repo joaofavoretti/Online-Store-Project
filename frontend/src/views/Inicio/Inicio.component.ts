@@ -21,7 +21,9 @@ export default class Inicio extends Vue {
   productMaisVendidosShowModel = 0;
   productTab = null;
   productDialog: ProductsInfo = { id: 0, name: '', price: 0, quantity: 0, description: '', youtubeEmbed: '', src: '' };
-
+  beforeMount(){
+    ProductsStore.getProducts();
+  };
   get pictures(): Array<CaroulselPictures> {
     return PicturesStore.getPictures;
   }
@@ -35,7 +37,6 @@ export default class Inicio extends Vue {
   }
 
   confirm(): void {
-    // TODO: Adicionar ao carrinho
     CartStore.addToCart(this.productDialog);
   }
 

@@ -84,7 +84,7 @@
             large
             :loading="loading || false"
             :disabled="!validator.isValid"
-            @click="signin"
+            @click="signup"
             width="45%"
           >
             Cadastrar
