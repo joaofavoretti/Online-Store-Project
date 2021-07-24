@@ -13,7 +13,7 @@ class ProductsStore extends VuexModule {
 
   productsAll: Array<ProductsInfo> = []
 
-  @Action
+  @Mutation
   async saveProduct(product: ProductsInfo): Promise<void> {
     ProductsService.saveProduct(product);
   }

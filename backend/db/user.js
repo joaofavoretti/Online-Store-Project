@@ -1,10 +1,6 @@
 const mongoose = require('./index');
 
 const UserScema = new mongoose.Schema({
-    id: {
-        type: Number,
-        require: true
-    },
     name: {
         type: String,
         require: true
@@ -28,6 +24,10 @@ const UserScema = new mongoose.Schema({
     dateCreated: {
         type: Date,
         dafault: Date.now
+    },
+    admin: {
+        type: Boolean,
+        default: false
     }
 });
 

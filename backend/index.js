@@ -20,44 +20,6 @@ const server = http.createServer(app);
 
 const router = express.Router();
 
-
-// DB configs
-var products = [
-    { id: 1, quantity: 5, name: 'Produto 0', price: 1, description: 'Muito gostoso', youtubeEmbed: 'https://www.youtube.com/embed/wtlfcHmfKW0', src: 'https://images.unsplash.com/photo-1495461199391-8c39ab674295?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80' },
-    { id: 2, quantity: 5, name: 'Produto 1', price: 1, src: 'https://images.unsplash.com/photo-1466637574441-749b8f19452f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80' },
-    { id: 3, quantity: 5, name: 'Produto 2', price: 1, src: 'https://images.unsplash.com/reserve/EnF7DhHROS8OMEp2pCkx_Dufer%20food%20overhead%20hig%20res.jpg?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1057&q=80' },
-    { id: 4, quantity: 5, name: 'Produto 3', price: 10, src: 'https://images.unsplash.com/photo-1556909172-89cf0b24ff02?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80' },
-    { id: 5, quantity: 5, name: 'Produto 4', price: 10, src: 'https://images.unsplash.com/photo-1491185841098-9ce20f966624?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80' },
-    { id: 6, quantity: 5, name: 'Produto 5', price: 10, src: 'https://images.unsplash.com/photo-1452251889946-8ff5ea7b27ab?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=730&q=80' },
-    { id: 7, quantity: 5, name: 'Product 0', price: 1, src: 'https://cdn.vuetifyjs.com/images/cards/cooking.png' },
-    { id: 8, quantity: 5, name: 'Product 1', price: 1, src: '' },
-    { id: 9, quantity: 5, name: 'Product 2', price: 1, src: '' },
-    { id: 10, quantity: 5, name: 'Product 3', price: 10, src: '' },
-    { id: 11, quantity: 5, name: 'Product 4', price: 10, src: '' },
-    { id: 12, quantity: 5, name: 'Product 5', price: 10, src: '' },
-    { id: 13, quantity: 5, name: 'Product 6', price: 100, src: '' },
-    { id: 14, quantity: 5, name: 'Product 7', price: 100, src: '' },
-    { id: 15, quantity: 5, name: 'Product 8', price: 10000, src: '' },
-  ]
-
-  var clients = [
-    { id: 1, name: 'Cliente 1', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-    { id: 2, name: 'Cliente 2', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-    { id: 3, name: 'Cliente 3', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-    { id: 4, name: 'Cliente 4', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-    { id: 5, name: 'Cliente 5', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-    { id: 6, name: 'Cliente 6', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-    { id: 7, name: 'Cliente 7', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-    { id: 8, name: 'Cliente 8', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-    { id: 9, name: 'Cliente 9', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-    { id: 10, name: 'Cliente 10', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-    { id: 11, name: 'Cliente 11', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-    { id: 12, name: 'Cliente 12', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-    { id: 13, name: 'Cliente 13', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-    { id: 14, name: 'Cliente 14', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-    { id: 15, name: 'Cliente 15', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-  ]
-
 /* Routes */
 
 // Register
@@ -82,7 +44,7 @@ const registerRoute = router.post('/signup', async (req, res, next) => {
 // Login
 const loginRoute = router.post('/login', async (req, res, next) => {
     const token = req.body.token
-    const [email, password] = atob(token).split(":");
+    const [email, password] = Buffer.from(token, 'base64').toString('ascii').split(":");
     
     const user = await User.find({ "email": email, "password": password });
     if (user.length != 0) {
@@ -96,49 +58,63 @@ const loginRoute = router.post('/login', async (req, res, next) => {
 // Create Sale (save user sale to the database)
 const saleRoute = router.post('/sale', (req, res, next) => {
     console.log(req.body);
-
     res.status(200).send();            
 });
 
 // Get Products
 const getProductsRoute = router.get('/products', async (req, res, next) => {
-    //const products = await Product.find({},{_id: 0, __v: 0});
-
-    res.status(200).send(products);            
+    Product.find({}).then(data=>{
+        console.log(data);
+        res.status(200).send(data);
+    }).catch(e=>{
+        res.status(200).send([]);
+    })
+            
 });
 
 // Save Product
 const saveProductsRoute = router.post('/products', async (req, res, next) => {
-    //const allProducts = await Product.find({});
-    //var data = req.body;
-    //data["id"] = allProducts.length+1;
-    //const products = await Product.create(data);
+    const products = await Product.create(req.body);
+    res.status(201).send();            
+});
 
-    products.push(data);
-    res.status(200).send();            
+
+// Update Product
+const updateProductsRoute = router.put('/products', (req, res, next) => {
+    const id = req.body._id;
+    Product.findByIdAndUpdate(id,
+        {$set: {
+            name: req.body.name,
+            price: req.body.price,
+            quantity: req.body.quantity,
+            description: req.body.description,
+            youtubeEmbed: req.body.youtubeEmbed,
+            src: req.body.src,
+            dateCreated: req.body.dateCreated
+        }}).then(x=>{
+            res.status(200).send();  
+        }).catch(e=>{
+            res.status(200).send();  
+        });          
 });
 
 // Get Clients
 const getClientsRoute = router.get('/clients', (req, res, next) => {
-    res.status(200).send(clients);            
+    User.find({}).then(data=> {
+      data.id = data._id;
+        res.status(200).send(data);  
+    }).catch(e=>{
+        res.status(200).send();
+    })          
 });
 
 // Delete Client
 const deleteClientRoute = router.post('/clients', (req, res, next) => {
-    var id = req.body["id"];
-    var idx=-1;
-    for (let i=0; i<clients.length; i++) {
-        if (clients[i].id == id) {
-            idx = i;
-        }
-    }
-
-    if (idx != -1) {
-        clients.splice(idx,1);
+    User.findOneAndRemove(req.body.id).then(x=>{
         res.status(204).send();
-    } else {
-        res.status(200).send(); 
-    }
+    }).catch(e=>{
+        res.status(200).send();
+    })
 });
 
 
@@ -147,6 +123,7 @@ app.use(registerRoute);
 app.use(saleRoute);
 app.use(getProductsRoute);
 app.use(saveProductsRoute);
+app.use(updateProductsRoute);
 app.use(getClientsRoute);
 app.use(deleteClientRoute);
 
