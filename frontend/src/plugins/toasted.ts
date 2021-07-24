@@ -10,17 +10,14 @@ const configToasted = (vueInstance: VueClass<any>): void => {
   });
 
   vueInstance.toasted.register('error', (message) => message, {
-    icon: 'error_outline',
     className: ['toast-error'],
   });
 
   vueInstance.toasted.register('info', (message) => message, {
-    icon: 'info_outline',
     className: ['toast-info'],
   });
 
   vueInstance.toasted.register('success', (message) => message, {
-    icon: 'check_circle_outline',
     className: ['toast-success'],
   });
 };

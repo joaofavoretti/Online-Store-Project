@@ -65,7 +65,7 @@
           color="primary"
           outlined
           name="password"
-          v-mask="'######'"
+          v-mask="'XXXXXX'"
           hint="Seis dígitos"
           @blur="validate('password')"
           @click:append="showPassword = !showPassword"

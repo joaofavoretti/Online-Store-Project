@@ -20,8 +20,8 @@
         class="d-flex justify-center"
         v-model="productTab"
       >
-        <v-tab class="mx-4">Mais vendidos</v-tab>
-        <v-tab class="mx-4">Lancamentos</v-tab>
+        <v-tab class="mx-4">Produtos</v-tab>
+        <!-- <v-tab class="mx-4">Lancamentos</v-tab> -->
       </v-tabs>
     </div>
 
@@ -29,6 +29,7 @@
       <v-tabs-items v-model="productTab">
         <v-tab-item>
           <v-carousel
+            v-if="productsMaisVendidos.length"
             hide-delimiters
             show-arrows-on-hover
             height="25rem"
@@ -54,10 +55,20 @@
               </div>
             </v-carousel-item>
           </v-carousel>
+          <v-alert
+            v-else
+            color="primary"
+            type="warning"
+            prominent
+            border="left"
+          >
+            Nenhum produto encontrado no estoque.
+          </v-alert>
         </v-tab-item>
 
-        <v-tab-item>
+        <!-- <v-tab-item>
           <v-carousel
+            v-if="productsLancamentos.length"
             hide-delimiters
             show-arrows-on-hover
             height="25rem"
@@ -83,7 +94,7 @@
               </div>
             </v-carousel-item>
           </v-carousel>
-        </v-tab-item>
+        </v-tab-item> -->
       </v-tabs-items>
     </div>
     <ProductDialog

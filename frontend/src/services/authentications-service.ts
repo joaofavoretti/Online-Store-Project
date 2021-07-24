@@ -1,6 +1,7 @@
 import { RequestResponse } from '@/shared/models/request-response-model';
 import { AuthenticationTokens, AuthLocalKeys, UserCadastro } from '@/store/modules/auth/auth-types';
 import Api from './api';
+import Vue from 'vue';
 
 export default class AuthenticationService {
   static async login(token: string): Promise<boolean> {
@@ -13,7 +14,7 @@ export default class AuthenticationService {
       this.setLocalStorageAuth(user);
       return true;
     } else {
-      alert("Email ou senha incorreto");
+      Vue.toasted.global.error("Email ou senha incorreto");
       return false;
     }
   }
@@ -44,6 +45,18 @@ export default class AuthenticationService {
     }
 
     return null;
+  }
+
+  static get getAdminAccount(): boolean {
+    const userStringified = localStorage.getItem(AuthLocalKeys.TOKEN);
+
+    if (userStringified === null) {
+      return false;
+    }
+
+    const user = JSON.parse(atob(userStringified));
+    
+    return (user.email === "admin@admin.com" && user.password === "admin")    
   }
 
   static clearLocalStorageAuth(): void {

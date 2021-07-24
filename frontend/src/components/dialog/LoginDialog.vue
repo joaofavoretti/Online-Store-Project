@@ -27,7 +27,7 @@
           color="primary"
           outlined
           name="password"
-          v-mask="'######'"
+          v-mask="'XXXXXX'"
           @blur="validate('password')"
           @click:append="showPassword = !showPassword"
           :append-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"

@@ -3,6 +3,7 @@ import { CartProduct } from '@/store/modules/cart/cart-types';
 import { UserCadastro } from '@/store/modules/auth/auth-types';
 import AuthenticationService from '@/services/authentications-service';
 import Api from './api';
+import Vue from 'vue';
 
 export default class CheckoutService {
 
@@ -16,7 +17,7 @@ export default class CheckoutService {
                 data:checkoutData
             });
         } else {
-            alert("Faça login para finalizar a compra.");
+            Vue.toasted.global.error("Faça login para finalizar a compra.");
         }
     }
 }
