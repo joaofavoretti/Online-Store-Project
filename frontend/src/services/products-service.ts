@@ -9,6 +9,10 @@ export default class ProducsService {
     }
 
     static async saveProduct(product: ProductsInfo): Promise<void> {
+        const response = await Api.put("/products", product);
+    }
+
+    static async saveNewProduct(product: ProductsInfo): Promise<void> {
         const response = await Api.post("/products", product);
     }
 }

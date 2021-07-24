@@ -1,5 +1,5 @@
 import { VuexModule, Module, getModule, Mutation, Action } from 'vuex-module-decorators';
-import ProducsService from '@/services/products-service';
+import ProductsService from '@/services/products-service';
 import store from '@/store/index';
 import { ProductsInfo } from './products-types';
 
@@ -15,7 +15,12 @@ class ProductsStore extends VuexModule {
 
   @Action
   async saveProduct(product: ProductsInfo): Promise<void> {
-      ProducsService.saveProduct(product);
+    ProductsService.saveProduct(product);
+  }
+
+  @Action
+  async saveNewProduct(product: ProductsInfo): Promise<void> {
+    ProductsService.saveNewProduct(product);
   }
 
   get getProductsMaisVendidos(): Array<ProductsInfo> {
@@ -41,7 +46,7 @@ class ProductsStore extends VuexModule {
 
   @Mutation
   async getProducts(): Promise<void> {
-    const products = await ProducsService.getProducts();
+    const products = await ProductsService.getProducts();
 
 
     this.productsAll = products;

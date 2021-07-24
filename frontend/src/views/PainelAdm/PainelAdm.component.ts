@@ -16,6 +16,8 @@ import EditarProdutoDialog from '@/components/dialog/EditarProdutoDialog.vue';
 export default class PainelAdm extends Vue {
   loading = false;
 
+  newProduct = false;
+
   showRemoveClient = false;
 
   showEditProduct = false;
@@ -60,11 +62,18 @@ export default class PainelAdm extends Vue {
 
   addProduto() {
     this.product = { id: 0, name: '', price: 0, quantity: 0, description: '', youtubeEmbed: '', src: '' };
+    this.newProduct = true;
     this.showEditProduct = true;
   }
 
   saveProduct(): void {
-    ProductsStore.saveProduct(this.product);
+    if (this.newProduct) {
+      ProductsStore.saveNewProduct(this.product);
+      this.newProduct = false;
+    } else {
+      ProductsStore.saveProduct(this.product);
+    }
+
     this.showEditProduct = false;
   }
 
