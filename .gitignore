@@ -1,0 +1,2 @@
+mongo/*
+!mongo/docker-compose.yaml

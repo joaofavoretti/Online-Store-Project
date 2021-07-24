@@ -20,7 +20,7 @@ export default class Inicio extends Vue {
   productLancamentosShowModel = 0;
   productMaisVendidosShowModel = 0;
   productTab = null;
-  productDialog: ProductsInfo = { id: 0, name: '', price: 0, quantity: 0, description: '', youtubeEmbed: '', src: '' };
+  productDialog: ProductsInfo = { id: '', name: '', price: 0, quantity: 0, description: '', youtubeEmbed: '', src: '' };
   beforeMount(){
     ProductsStore.getProducts();
   };
