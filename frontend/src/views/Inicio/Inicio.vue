@@ -29,26 +29,29 @@
       <v-tabs-items v-model="productTab">
         <v-tab-item>
           <v-carousel
-            v-if="productsMaisVendidos.length"
+            v-if="productsMaisVendidos.length > 0"
             hide-delimiters
             show-arrows-on-hover
             height="25rem"
             v-model="productMaisVendidosShowModel"
             >
             <v-carousel-item
-              v-for="(productPage, i) in (productsMaisVendidos.length/3)"
+              v-for="(productPage, i) in Math.ceil(productsMaisVendidos.length/3)"
               :key="i"
             >
               <div class="d-flex justify-center">
                 <ProductCard
+                  v-if="productsMaisVendidos[3*(productPage-1)+0]"
                   @onClick="openProductDialog(productsMaisVendidos[3*(productPage-1)+0])"
                   :product="productsMaisVendidos[3*(productPage-1)+0]"
                 />
                 <ProductCard
+                  v-if="productsMaisVendidos[3*(productPage-1)+1]"
                   @onClick="openProductDialog(productsMaisVendidos[3*(productPage-1)+1])"
                   :product="productsMaisVendidos[3*(productPage-1)+1]"
                 />
                 <ProductCard
+                  v-if="productsMaisVendidos[3*(productPage-1)+2]"
                   @onClick="openProductDialog(productsMaisVendidos[3*(productPage-1)+2])"
                   :product="productsMaisVendidos[3*(productPage-1)+2]"
                 />

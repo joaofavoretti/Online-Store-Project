@@ -51,7 +51,7 @@ export default class PainelAdm extends Vue {
   }
 
   handleEditProdut(productId: number): void {
-    this.product = { ...this.getProducts.filter((product) => product.id === productId)[0] };
+    this.product = { ...this.getProducts.filter((product) => product._id === productId)[0] };
     this.showEditProduct = true;
   }
 

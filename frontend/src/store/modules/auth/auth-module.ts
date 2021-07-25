@@ -38,7 +38,6 @@ class AuthStore extends VuexModule {
 
       if (success) this.setSigned(true);
     } catch (error) {
-      console.log(error);
       const [message] = error.data.messages[0];
       Vue.toasted.global.customError(message);
     } finally {

@@ -38,10 +38,11 @@ export default class Inicio extends Vue {
 
   confirm(): void {
     CartStore.addToCart(this.productDialog);
+    this.show = false;
   }
 
   openProductDialog(product: ProductsInfo): void {
-    this.productDialog = product;
+    this.productDialog = {...product, quantity: 1 };
     this.show = true;
   }
 }

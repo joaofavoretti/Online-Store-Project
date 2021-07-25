@@ -27,6 +27,25 @@ class CartStore extends VuexModule {
     localStorage.setItem("cart", b64products);
   }
 
+  @Mutation
+  resetCartList(): void {
+    this.products = [];
+
+    const b64products = btoa(JSON.stringify(this.products));
+    localStorage.setItem("cart", b64products);
+    this.fetchCartProducts();
+  }
+
+  @Mutation
+  removeProductFromCard(product: CartProduct | null): void {
+    if (product === null) return;
+
+    this.products = this.products.filter(p => p._id !== product._id);
+
+    const b64products = btoa(JSON.stringify(this.products));
+    localStorage.setItem("cart", b64products);
+  }
+
   get isLoading():boolean {
     return this.loading;
   }

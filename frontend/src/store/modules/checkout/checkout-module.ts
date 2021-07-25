@@ -17,7 +17,7 @@ class CheckoutStore extends VuexModule {
     CheckoutService.confirmPayment(cart, checkoutData);
     this.setLoading(false);
 
-    CartStore.fetchCartProducts();
+    CartStore.resetCartList();
   }
 
   get isLoading(): boolean {

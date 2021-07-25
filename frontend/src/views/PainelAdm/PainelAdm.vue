@@ -48,7 +48,7 @@
                 color="gray"
                 v-bind="attrs"
                 v-on="on"
-                @click="handleEditProdut(item.id)"
+                @click="handleEditProdut(item._id)"
               >
                 <v-icon>mdi-pencil</v-icon>
               </v-btn>
