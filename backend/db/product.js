@@ -11,7 +11,8 @@ const ProductScema = new mongoose.Schema({
     },
     quantity:{
         type: Number,
-        require: true
+        require: true,
+        min: 0
     },
     description: {
         type: String,

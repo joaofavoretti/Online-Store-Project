@@ -55,9 +55,27 @@ const loginRoute = router.post('/login', async (req, res, next) => {
     res.status(200).send();            
 });
 
-// Create Sale (save user sale to the database)
-const saleRoute = router.post('/sale', (req, res, next) => {
-    console.log(req.body);
+// Create Sale (save user sale to the database and decrease product)
+const saleRoute = router.post('/sale', async (req, res, next) => {
+    const products = req.body.products;
+    for(let i=0; i<products.length; i++) {
+        var product = products[i];
+        try{
+            var productOld = await Product.findById(product._id);
+            var quantity = productOld.quantity;
+            Product.findByIdAndUpdate(product._id,
+                {$set: {
+                    quantity: quantity - product.quantity,
+                }}).then(x=>{
+                    console.log("Compra realizada");
+                }).catch(e=>{
+                    console.log("Falha na compra");
+                });  
+        }
+        catch{
+            res.status(405).send();  
+        }        
+    }
     res.status(200).send();            
 });
 
