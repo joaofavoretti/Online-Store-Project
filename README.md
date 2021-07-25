@@ -15,7 +15,7 @@ Trabalho da disciplina Introdução ao Desenvolvimento Web - SCC0219
 ### Requerimentos
 
 - O sistema deve ter dois tipos de usuário:
-    - Administradores: São responsáveis por gerenciar administradores, clientes e podutos.
+    - Administradores: São responsáveis por gerenciar administradores, clientes e podutos. Para utilizar a conta de administrador, utilize as credenciais ```admin@admin.com:admin``` no formato (```email:senha```)
     - Clientes: São usuários que acessam o sistema para comprar produtos.
 - Para armazenar os dados é preciso ter os seguintes registros:
     - admin: id, nome, telefone e email;
@@ -26,7 +26,7 @@ Trabalho da disciplina Introdução ao Desenvolvimento Web - SCC0219
 -  Checkout: O sistema deve solicitar pelo cartão de crédito e senha do cliente. Conclui-se a compra e esvazia o carrinho.
 - O carrinho pode ser esvaziado apenas após o pagamento ou pelo cliente.
 - Gerenciamento dos produtos: administradores podem criar/atualizar/ler/deletar algum produto. Por exemplo, mudar a quantidade em estoque.
-- Funcionalidade **específica**: Ao acessar um ingrediente, o cliente pode selecionar uma receita e adicionar os ingredientes necessários para ela diretamente ao carrinho. Além disso, ao abrir os detalhes de um ingrediente, as receitas são listadas a baixo e um video no Youtube sobre a receita também é direcionado.
+- Funcionalidade **específica**: Ao acessar os detalhes do produto, o cliente pode ver uma descricao com nomes de possíveis receitas para se fazer com aquele ingrediente, assim como um video no Youtube de uma receita sendo feita.
 - O sistema deve atender os requisitos de acessibilidade e prover boa usabilidade. Além disso o sistema deve ser responsivo.
 
 ---
@@ -39,7 +39,7 @@ Esse projeto consiste no desenvolvimento de uma aplicação online para uma loja
 - Cliente pode dicionar ou remover produtos do carrinho
 - Processo de checkout
 - Opções para gerenciamento de clientes e produtos exclusivas para administradores.
-- Funcionaliadde específica dessa aplicação: Ao clicar para visualizar um ingrediente do site, o cliente poderá ver sugestões de possíveis receitas para fazer com o ingrediente e adicionar receita completa ao carrinho de uma vez. Além de ser direcionado à um video no Youtube sobre a receita caso exista.
+- Funcionaliade específica dessa aplicação: Ao clicar para visualizar um ingrediente do site, o cliente poderá ver sugestões de possíveis receitas para fazer com o ingrediente. Além de ser direcionado à um video no Youtube sobre a receita caso exista.
 
 A fim de atender essas funcionalidades será necessário guardar informações referente a(o):
 - admin: id, nome, telefone e email;
@@ -48,13 +48,13 @@ A fim de atender essas funcionalidades será necessário guardar informações r
 - receita: id, nome, foto, ingredientes e descrição;
 
 
-Até o momento, foram desenvolvidas algumas das interfaces da loja utilizando a ferrementa Figma e HTML5/CSS3. O diagrama de navegação da aplicação com as páginas desenvolvidas pode ser visto na seguinte imagem:
+O diagrama de navegação da aplicação com as páginas desenvolvidas pode ser visto na seguinte imagem:
 
 
 <img src="https://docs.google.com/drawings/d/e/2PACX-1vQwnxKMqVyg2b3LG4fyccQgSx_RdGMqBWtCVipjJF4xozRtMyHfKtNJks_RUJ9YgIAi7qbzlN-ZyiPr/pub?w=1829&amp;h=940">
 
 
-Para visualizar as páginas estáticas implementadas, é possível utilizar os seguintes links:
+Para visualizar as páginas estáticas implementadas para prototipação, é possível utilizar os seguintes links:
 - [Página principal](https://joaofavoretti.github.io/Online-Store-Project/Mockup/pagina-principal.html)
 - [Carrinho](https://joaofavoretti.github.io/Online-Store-Project/Mockup/cart.html)
 - [Página do administrador](https://joaofavoretti.github.io/Online-Store-Project/Mockup/admin-page.html)
@@ -62,8 +62,11 @@ Para visualizar as páginas estáticas implementadas, é possível utilizar os s
 ---
 
 ### Comentários sobre o código
-Primeiramente, o nosso frontend esta dentro da pasta [frontend](https://github.com/joaofavoretti/Online-Store-Project/tree/main/frontend).
+Código relacionado ao frontend está dentro da pasta [frontend](https://github.com/joaofavoretti/Online-Store-Project/tree/main/frontend).<br>
+Código relacionado ao backend está dentro da pasta [backend](https://github.com/joaofavoretti/Online-Store-Project/tree/main/backend).<br>
+Código relacionado ao banco de dados esta dentro da pasta [mongo](https://github.com/joaofavoretti/Online-Store-Project/tree/main/mongo).<br>
 
+#### Frontend
 A estrutura de pastas do projeto:
 ![image](https://user-images.githubusercontent.com/31491328/123684391-c5dd4600-d823-11eb-9535-3e76c6ccf167.png)
 
@@ -81,17 +84,19 @@ Para deixar o código padronizado, usamos a seguinte estrutura de pastas no proj
 
 Além disso, vale comentar que por baixo das telas da pasta views, criamos um arquivo chamado [DashboardLayout.vue](https://github.com/joaofavoretti/Online-Store-Project/blob/main/frontend/src/components/layout/DashboardLayout.vue) para servir como root("/") do nosso objeto de [rotas](https://github.com/joaofavoretti/Online-Store-Project/blob/main/frontend/src/router/index.ts). E foi assim que fizemos as transições por meio do Navigation Drawer da tela.
 
-Com o site sem integração com o backend, nenhuma das funcionalidades ainda funcionam de fato. É possível ver todas as telas feitas no mockup, mas ao clicar em "Logar", "Comprar", "Atualizar", nada é feito por baixo dos panos, as dialogs com os botões somente fecham por enquanto. Porém, é possível "Logar" de forma simples no site. Ao clicar em "Não logado", a caixa de login abre e é possível entrar com qualquer informações para e-mail e senha que atendam os validadores de campos. Como por exemplo:
+#### Backend
+A estrutura de pastas do projeto:
+![image](https://user-images.githubusercontent.com/31491328/126907265-c862eb96-1e2b-4e5d-a7b3-ddfaab345d73.png)
 
-<p align="center">
-    <img src="https://user-images.githubusercontent.com/31491328/123686625-5ddc2f00-d826-11eb-97ad-669e281bd08e.png">
-</p>
-    
-Após clicar em "Entrar", um nome mockado ("Conta teste") e o e-mail digitado aparecerão no Navigation Drawer à esquerda: 
+- db: Dentro da pasta db, temos os arquivos usados como Schema para usar o banco de dados
+    -  index.js: Arquivo de configuração do banco de dados
+    -  product.js: Arquivo para configuração dos produtos do site
+    -  user.js: Arquivo para configurar os schemas dos usuarios cadastrados no site
+- index.js: Arquivo com as rotas utilizadas no backend
 
-<p align="center">
-    <img src="https://user-images.githubusercontent.com/31491328/123686848-9ed44380-d826-11eb-8ec1-8b92ea7172dd.png">
-</p>
+#### Banco de dados
+Como para utilizar o banco, é necessário que se efetue uma serie de comandos, utilizamos a ferramenta do docker para facilitar o processo.<br>
+Dentro da pasta ```/mongo/``` temos o arquivo [docker-compose.yaml](https://github.com/joaofavoretti/Online-Store-Project/blob/main/mongo/docker-compose.yaml) utilizado para rodar o banco de dados.<br>
 
 ---
 
@@ -106,35 +111,62 @@ Os demais campos pelo site tem suas devidas validações e mascaras quando neces
 ---
 
 ### Build Procedures
-#### Node
+#### • Node
 Para rodar o site na sua máquina, você deve ter o Node e o gerenciador de pacotes npm instalado na sua máquina.
 Caso você não tenha, faça o [download pelo site oficial](https://nodejs.org/pt-br/download/package-manager/), de acordo com o seu sistema operacional. 
 
-Execute os comandos abaixo no diretorio ```/frontend``` do repositório
+#### • Docker
+Para rodar o banco de dados, achamos que ficou muito mais facil utilizar o docker-compose.
+Para isso, é necessário que, para rodar o projeto, tenha o docker-compose instalado na máquina. Utilizando [esse link](https://docs.docker.com/compose/install/), e seguindo os passos do site, é bem trivial realizar a instalação. 
+Para qualquer dúvida durante a instalação, os membros do grupo estão disponíveis para ajudar por e-mail ou Telegram.
 
-#### Setup
-Após ter o npm instalado, utilize o seguinte comando para instalar todas as dependencias do projeto:
+
+#### • MongoDB
+\* **É essencial rodar o banco de dados antes de rodar o projeto do frontend e do backend**
+##### Run
+Com o Docker-compose instalado, entre no diretório ```/mongo/```. Para rodar o banco de dados utilize o comando:
+```
+docker-compose up
+```
+
+#### • Frontend
+##### Setup
+Após ter o npm instalado, entre no diretório ```/frontend/``` e utilize o seguinte comando para instalar todas as dependencias do frontend:
 ```
 npm install
 ```
 
-#### Compile
-Após instalar as dependencias do projeto, para rodar a apliação utilize o comando:
+##### Run
+Após instalar as dependencias do projeto, para rodar a aplicação utilize o comando:
 ```
 npm run serve
 ```
+
+#### • Backend
+##### Setup
+Também com o npm instalado, entre no diretório ```/backend/``` e utilize o seguinte comando para instalar todas as dependencias do backend:
+```
+npm install
+```
+##### Run
+Após instalar as dependencias do projeto, para rodar a apliação utilize o comando:
+```
+npm run dev
+```
+
 
 Assim, depois que o processo terminar, utilize seu navegador para acessar o endereço [localhost:8080](http://localhost:8080) e acessar o site.
 
 ---
 
 ### Problemas
-Nenhum problema grave encontrado até o momento.
+Por conta de problemas de tempo, não conseguimos fazer todas as features que planejamos para o projeto.
 
 ---
 
 ### Comentários
 
+#### Mockup
 Os códigos para as páginas estáticas implementadas:
 - [Página principal](Mockup/pagina-principal.html)
 - [Carrinho](Mockup/cart.html)
@@ -143,3 +175,8 @@ Os códigos para as páginas estáticas implementadas:
 Além disso, é possivel baixar o arquivo [Website-Prototype.fig](Website-Prototype.fig) e importar direto pelo software do Figma para ver o projeto pelo próprio aplicativo.
 
 Imagens (.PNG) de todos os componentes desenvolvidos no Figma estão salvos na pasta [/Mockup/images-mockup](/Mockup/images-mockup) onde também podem ser visualizados.
+
+#### Aplicação
+Ao rodar primeiramente o projeto, o banco de dados estará vazio. Somente será possível logar com as credenciais de administrador ```(admin@admin.com:admin)```.
+
+Para criar novos usuários, basta criar uma nova conta pelo site. Do mesmo modo para adicionar novos produtos, basta adicionar-los utilizando o Painel Adiministrador no usuario admin.
