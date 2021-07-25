@@ -65,7 +65,7 @@
           color="primary"
           outlined
           name="password"
-          v-mask="'######'"
+          v-mask="'XXXXXX'"
           hint="Seis dígitos"
           @blur="validate('password')"
           @click:append="showPassword = !showPassword"
@@ -84,7 +84,7 @@
             large
             :loading="loading || false"
             :disabled="!validator.isValid"
-            @click="signin"
+            @click="signup"
             width="45%"
           >
             Cadastrar

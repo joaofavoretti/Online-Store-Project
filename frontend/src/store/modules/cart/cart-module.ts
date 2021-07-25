@@ -6,32 +6,44 @@ import { CartProduct } from './cart-types';
 class CartStore extends VuexModule {
   loading = false;
 
-  products: Array<CartProduct> = [
-    { id: 1, name: 'Produto 0', quantity: 5, price: 1, brandName: 'Brand&Name', description: 'Muito gostoso', src: 'https://images.unsplash.com/photo-1495461199391-8c39ab674295?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80' },
-    { id: 2, name: 'Produto 1', quantity: 5, price: 1, src: '' },
-    { id: 3, name: 'Produto 2', quantity: 5, price: 1, src: 'https://images.unsplash.com/reserve/EnF7DhHROS8OMEp2pCkx_Dufer%20food%20overhead%20hig%20res.jpg?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1057&q=80' },
-    { id: 4, name: 'Produto 3', quantity: 5, price: 10, src: 'https://images.unsplash.com/photo-1556909172-89cf0b24ff02?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80' },
-    { id: 5, name: 'Produto 4', quantity: 5, price: 10, src: 'https://images.unsplash.com/photo-1491185841098-9ce20f966624?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80' },
-    { id: 6, name: 'Produto 5', quantity: 5, price: 10, src: 'https://images.unsplash.com/photo-1452251889946-8ff5ea7b27ab?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=730&q=80' },
-  ];
+  products: Array<CartProduct> = this.fetchCartProducts();
 
   @Action
-  async fetchCartProducts(): Promise<void> {
-    this.setLoading(true);
-    // TODO: Create service to fetch cart products from endpoint
+  fetchCartProducts(): Array<CartProduct> {
+    const b64products = localStorage.getItem("cart");
 
-    this.setLoading(false);
+    if (b64products !== null) {
+      const products = JSON.parse(atob(b64products));
+      return products;
+    }
+    return [];    
   }
 
   @Action
-  addToCart(product: ProductsInfo): Promise<void> {
-    this.setLoading(true);
+  addToCart(product: Object): void {
+    this.products.push(<CartProduct> product);
 
-    // TODO: Create service to add product to Cart
+    const b64products = btoa(JSON.stringify(this.products));
+    localStorage.setItem("cart", b64products);
+  }
 
-    // TODO: Fetch Cart again
+  @Mutation
+  resetCartList(): void {
+    this.products = [];
 
-    this.setLoading(false);
+    const b64products = btoa(JSON.stringify(this.products));
+    localStorage.setItem("cart", b64products);
+    this.fetchCartProducts();
+  }
+
+  @Mutation
+  removeProductFromCard(product: CartProduct | null): void {
+    if (product === null) return;
+
+    this.products = this.products.filter(p => p._id !== product._id);
+
+    const b64products = btoa(JSON.stringify(this.products));
+    localStorage.setItem("cart", b64products);
   }
 
   get isLoading():boolean {

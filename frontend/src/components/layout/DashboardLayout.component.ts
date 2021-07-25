@@ -21,12 +21,21 @@ export default class DashboardLayout extends Vue {
 
   cadastroDialog = false;
 
-  navigationDrawerItems = [
-    { title: 'Início', icon: 'mdi-view-dashboard', routerName: 'inicio' },
-    { title: 'Carrinho', icon: 'mdi-cart', routerName: 'carrinho' },
-    { title: 'Painel Administrador', icon: 'mdi-security', routerName: 'painel-adm' },
-  ];
+  get navigationDrawerItems() {
 
+    if (AuthStore.isAdminSigned) {
+      return [
+        { title: 'Início', icon: 'mdi-view-dashboard', routerName: 'inicio' },
+        { title: 'Carrinho', icon: 'mdi-cart', routerName: 'carrinho' },
+        { title: 'Painel Administrador', icon: 'mdi-security', routerName: 'painel-adm' },
+      ]
+    }
+    return [
+      { title: 'Início', icon: 'mdi-view-dashboard', routerName: 'inicio' },
+      { title: 'Carrinho', icon: 'mdi-cart', routerName: 'carrinho' },
+    ];
+  }
+ 
   async logoff(): void {
     await AuthStore.logoff();
     this.showConfirmation = false;

@@ -20,8 +20,10 @@ export default class Inicio extends Vue {
   productLancamentosShowModel = 0;
   productMaisVendidosShowModel = 0;
   productTab = null;
-  productDialog: ProductsInfo = { id: 0, name: '', price: 0, quantity: 0, description: '', youtubeEmbed: '', src: '' };
-
+  productDialog: ProductsInfo = { id: '', name: '', price: 0, quantity: 0, description: '', youtubeEmbed: '', src: '' };
+  beforeMount(){
+    ProductsStore.getProducts();
+  };
   get pictures(): Array<CaroulselPictures> {
     return PicturesStore.getPictures;
   }
@@ -35,12 +37,12 @@ export default class Inicio extends Vue {
   }
 
   confirm(): void {
-    // TODO: Adicionar ao carrinho
     CartStore.addToCart(this.productDialog);
+    this.show = false;
   }
 
   openProductDialog(product: ProductsInfo): void {
-    this.productDialog = product;
+    this.productDialog = {...product, quantity: 1 };
     this.show = true;
   }
 }

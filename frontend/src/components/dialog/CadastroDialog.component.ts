@@ -34,7 +34,7 @@ export default class LoginDialog extends Vue {
     isValid: false,
   };
 
-  async validate(fieldname: keyof UserCadastro): void {
+  async validate(fieldname: keyof UserCadastro): Promise<void> {
     this.validator = await YupFormValidator.validate(cadastroSchema, fieldname, this.user);
   }
 
@@ -42,8 +42,8 @@ export default class LoginDialog extends Vue {
     return AuthStore.isLoading;
   }
 
-  async signin(): void {
-    await AuthStore.signin(this.user);
+  async signup(): Promise<void> {
+    await AuthStore.signup(this.user);
     this.handleClose();
   }
 }

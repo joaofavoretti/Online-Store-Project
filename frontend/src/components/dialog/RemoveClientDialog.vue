@@ -39,7 +39,7 @@
 </template>
 
 <script lang="ts">
-import { ClientsInfo } from '@/store/modules/clients/clients.types';
+import { ClientsInfo } from '@/store/modules/clients/clients-types';
 import { Component, Emit, Prop, Vue } from 'vue-property-decorator';
 
 @Component

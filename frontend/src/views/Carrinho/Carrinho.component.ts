@@ -27,6 +27,7 @@ export default class Carrinho extends Vue {
 
   async confirmRemove(): Promise<void> {
     // TODO: Requisicao para remover item
+    CartStore.removeProductFromCard(this.productRemove);
     await CartStore.fetchCartProducts();
     this.showConfirmation = false;
   }
@@ -45,7 +46,7 @@ export default class Carrinho extends Vue {
 
   get getCartTotal(): number {
     const total = this.cart.reduce((acc, cur) => {
-      acc += cur.price;
+      acc += (cur.price * cur.quantity);
       return acc;
     }, 0);
 

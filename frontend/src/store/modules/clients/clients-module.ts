@@ -1,47 +1,24 @@
 import { VuexModule, Module, getModule, Action, Mutation } from 'vuex-module-decorators';
+import ClientsService from '@/services/clients-service';
 import store from '@/store/index';
-import { ClientsInfo } from './clients.types';
+import { ClientsInfo } from './clients-types';
 
 @Module({ namespaced: true, name: 'clients', dynamic: true, store })
 class ClientsStore extends VuexModule {
   loading = false;
 
-  clientes: Array<ClientsInfo> = [
-    { id: 1, name: 'Cliente 1', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-    { id: 2, name: 'Cliente 2', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-    { id: 3, name: 'Cliente 3', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-    { id: 4, name: 'Cliente 4', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-    { id: 5, name: 'Cliente 5', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-    { id: 6, name: 'Cliente 6', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-    { id: 7, name: 'Cliente 7', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-    { id: 8, name: 'Cliente 8', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-    { id: 9, name: 'Cliente 9', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-    { id: 10, name: 'Cliente 10', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-    { id: 11, name: 'Cliente 11', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-    { id: 12, name: 'Cliente 12', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-    { id: 13, name: 'Cliente 13', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-    { id: 14, name: 'Cliente 14', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-    { id: 15, name: 'Cliente 15', phone: '(DD) 99796-4097', email: 'teste@teste.com', address: 'av teste' },
-  ]
+  clientes: Array<ClientsInfo> = [];
 
   @Action
-  removeClient(clientId: number) {
+  async removeClient(clientId: number): Promise<void> {
     this.setLoading(true);
 
-    // TODO: Remove clients service
+    ClientsService.removeClient(clientId);
 
     this.fetchClients();
     this.setLoading(false);
   }
 
-  @Action
-  fetchClients() {
-    this.setLoading(true);
-
-    // TODO: Fetch clients service
-
-    this.setLoading(false);
-  }
 
   get getClientsAll(): Array<ClientsInfo> {
     return this.clientes;
@@ -54,6 +31,13 @@ class ClientsStore extends VuexModule {
   @Mutation
   setLoading(value: boolean):void {
     this.loading = value;
+  }
+
+  @Mutation
+  async fetchClients(): Promise<void> {
+    var clients = await ClientsService.fetchClients();
+    this.clientes = clients;
+
   }
 }
 
